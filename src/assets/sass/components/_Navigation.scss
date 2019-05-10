@@ -1,0 +1,35 @@
+.navigation {
+background-color: rgb(32, 32, 56);
+color: rgb(255, 255, 255);
+
+&-btn {
+  color: rgb(255, 255, 255) !important;
+  border: 1px solid rgb(255, 255, 255);
+  text-align: center;
+  transition: all .4s;
+  letter-spacing: .07rem;
+  font-weight: 400;
+  padding: .375rem .75rem;
+  border-radius: 0rem;
+
+  &:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(32, 32, 56) !important;
+  }
+}
+
+.form-control {
+  border-radius: 0.15rem;
+}
+
+}
+
+.bg-dark {
+  background-color: rgb(32, 32, 56) !important;
+  color: white !important;
+}
+
+.navbar-toggler, .navbar-toggler:focus, .navbar-toggler:hover, .navbar-toggler:active, .navbar-toogler:visited {
+  border: 2px solid white;
+  outline: none;
+}
