@@ -10,7 +10,6 @@ import './assets/bootstrap/jquery.min';
 import './assets/sass/index.scss';
 import App from './container/App';
 
-
 render(<Provider store={Store}>
   <BrowserRouter>
     <App />
