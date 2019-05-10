@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import Store from './store/index';
 
 import './assets/bootstrap/bootstrap.min.css';
@@ -9,4 +11,9 @@ import './assets/sass/index.scss';
 import App from './container/App';
 
 
-render(<Provider store={Store}><App /></Provider>, document.getElementById('root'));
+render(<Provider store={Store}>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+</Provider>,
+document.getElementById('root'));
