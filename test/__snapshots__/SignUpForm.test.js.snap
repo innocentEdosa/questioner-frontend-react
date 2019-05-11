@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignUpForm /> Should match the snapshot 1`] = `
+<div
+  className="page-bg"
+>
+  <div
+    className=" form-wrapper"
+  >
+    <form
+      className="form-signup"
+    >
+      <div
+        className="text-center mb-4"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+           
+          <img
+            alt=""
+            className="mb-4"
+            height="55"
+            src="assets/img/logo1.png"
+            width="55"
+          />
+        </a>
+        <h1
+          className="h3 mb-3 font-weight-bold"
+        >
+          Join Questioner
+        </h1>
+        <p
+          className="text-muted"
+        >
+          ...you could be the first to ask the right questions
+        </p>
+      </div>
+      <div
+        className="form-label-group"
+      >
+        <label
+          className="form-label"
+          htmlFor="inputUsername"
+        >
+          Username
+        </label>
+        <input
+          className="py-4 mb-3 form-control"
+          id="inputUsername"
+          placeholder="Pick a username"
+          required={true}
+          type="text"
+        />
+      </div>
+      <div
+        className="form-label-group"
+      >
+        <label
+          className="form-label"
+          htmlFor="inputEmail"
+        >
+          Email address
+        </label>
+        <input
+          className="py-4 mb-3 form-control"
+          id="inputEmail"
+          placeholder="You@example.com"
+          required={true}
+          type="email"
+        />
+      </div>
+      <div
+        className="form-row"
+      >
+        <div
+          className="col-md-6 "
+        >
+          <label
+            className="form-label"
+            htmlFor="inputPassword"
+          >
+            Password
+          </label>
+          <input
+            className="py-4 mb-3 form-control"
+            id="inputPassword"
+            placeholder="Create a password"
+            required={true}
+            type="password"
+          />
+        </div>
+        <div
+          className="col-sm-6"
+        >
+          <label
+            className="form-label"
+            htmlFor="confirmPassword"
+          >
+            Confirm password
+          </label>
+          <input
+            className="py-4 mb-3 form-control"
+            id="confirmPassword"
+            placeholder="Create a password"
+            required={true}
+            type="password"
+          />
+        </div>
+      </div>
+      <button
+        className="btn form-btn btn-lg btn-block"
+        type="submit"
+      >
+        SIGN UP FOR QUESTIONER
+      </button>
+      <p
+        className="mt-5 mb-3 text-muted text-center"
+      >
+        Already have an account?
+         
+        <a
+          className="ml-1 form-btn-sub btn btn-outline-success text-success"
+          href="/Login"
+          onClick={[Function]}
+        >
+          Log in
+        </a>
+      </p>
+    </form>
+  </div>
+</div>
+`;

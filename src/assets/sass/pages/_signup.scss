@@ -1,0 +1,38 @@
+.page-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  padding: 0rem 25rem;
+
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(20, 20, 37, 0.97),
+      rgba(0, 0, 0, 0.98)
+    ),
+    url(/assets/img/bg1.jpg);
+}
+
+@media (max-width: 48rem) {
+  .page-bg {
+    height: auto;
+    padding: 0rem;
+    min-height: 100vh;
+    background-image: none;
+    background-color: #ffffff;
+    backface-visibility: hidden;
+}
+}
+
+@media (max-width: 74.999rem) {
+  .page-bg {
+    height: 100vh;
+    padding: 0rem;
+    background-image: none;
+    background-color: #fff;
+  }
+ }
+
