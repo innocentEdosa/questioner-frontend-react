@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/innocentEdosa/questioner-frontend-react#readme",
   "dependencies": {
+    "@babel/runtime": "^7.4.4",
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.1",
     "enzyme": "^3.9.0",
@@ -29,6 +31,7 @@
     "express": "^4.16.4",
     "formik": "^1.5.4",
     "jquery": "^3.4.1",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
@@ -43,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.8.0",
