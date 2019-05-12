@@ -129,11 +129,12 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
       >
         Already have an account?
         <a
-          className="ml-1 form-btn-sub btn btn-outline-success text-success"
-          href="/Login"
+          className="ml-1 form-btn-sub btn btn-outline-success text-success "
+          href="/Auth"
           onClick={[Function]}
         >
           Log in
+           
         </a>
       </p>
     </form>

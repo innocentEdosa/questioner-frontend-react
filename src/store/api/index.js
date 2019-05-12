@@ -9,6 +9,5 @@ const client = axios.create({
   },
 });
 
-const signup = params => client.post('/auth/signup', params);
-
-export default signup;
+export const signup = params => client.post('/auth/signup', params);
+export const login = params => client.post('/auth/login', params);
