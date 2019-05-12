@@ -6,7 +6,7 @@ import SignUpForm from '../src/components/SignUpForm';
 
 describe('<SignUpForm />', () => {
   it('Should match the snapshot', () => {
-    const tree = renderer.create(<MemoryRouter><SignUpForm /></MemoryRouter>).toJSON();
+    const tree = renderer.create(<MemoryRouter><SignUpForm values={{ formError: { email: 'please provide an email' } }} /></MemoryRouter>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

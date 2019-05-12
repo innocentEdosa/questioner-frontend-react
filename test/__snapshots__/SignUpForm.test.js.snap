@@ -8,7 +8,7 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
     className=" form-wrapper"
   >
     <form
-      className="form-signup"
+      className="form-signup needs-validation"
     >
       <div
         className="text-center mb-4"
@@ -49,6 +49,7 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
         <input
           className="py-4 mb-3 form-control"
           id="inputUsername"
+          name="username"
           placeholder="Pick a username"
           required={true}
           type="text"
@@ -66,10 +67,16 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
         <input
           className="py-4 mb-3 form-control"
           id="inputEmail"
+          name="email"
           placeholder="You@example.com"
           required={true}
           type="email"
         />
+        <p
+          className="mt-n2 text-danger font-weight-lighter"
+        >
+          please provide an email
+        </p>
       </div>
       <div
         className="form-row"
@@ -86,13 +93,14 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
           <input
             className="py-4 mb-3 form-control"
             id="inputPassword"
+            name="password"
             placeholder="Create a password"
             required={true}
             type="password"
           />
         </div>
         <div
-          className="col-sm-6"
+          className="col-md-6"
         >
           <label
             className="form-label"
@@ -103,6 +111,7 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
           <input
             className="py-4 mb-3 form-control"
             id="confirmPassword"
+            name="password confirmation"
             placeholder="Create a password"
             required={true}
             type="password"
@@ -110,7 +119,7 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
         </div>
       </div>
       <button
-        className="btn form-btn btn-lg btn-block"
+        className="btn form-btn btn-lg btn-block "
         type="submit"
       >
         SIGN UP FOR QUESTIONER
@@ -119,7 +128,6 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
         className="mt-5 mb-3 text-muted text-center"
       >
         Already have an account?
-         
         <a
           className="ml-1 form-btn-sub btn btn-outline-success text-success"
           href="/Login"
