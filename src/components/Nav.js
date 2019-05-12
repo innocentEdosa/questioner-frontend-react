@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const Navigation = () => (
+
+const Nav = ({ children }) => (
   <nav className="navbar navigation navbar-expand-lg navbar-dark bg-dark">
     <div className="container">
       <Link to="/" className="navbar-brand" href="/">
@@ -35,18 +37,14 @@ const Navigation = () => (
               Search
             </button>
           </form>
-
-          <Link to="/Login" className="nav-item m-2   navigation-btn nav-link ">
-            Sign in
-            {' '}
-          </Link>
-          <Link to="/Signup" className="nav-item m-2  navigation-btn nav-link">
-            Sign up
-          </Link>
+          {children}
         </div>
       </div>
     </div>
   </nav>
 );
 
-export default Navigation;
+Nav.propTypes = {
+  children: PropTypes.oneOf(PropTypes.array).isRequired
+};
+export default Nav;

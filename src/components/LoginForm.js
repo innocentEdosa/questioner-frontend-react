@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import formatServerError from '../helper/formatServerResponse';
 
-
-const SignUpForm = ({
+const LoginForm = ({
   blur,
   submit,
   values,
@@ -17,7 +16,6 @@ const SignUpForm = ({
   const { formError } = values;
 
   const formattedServerError = formatServerError(serverError);
-
 
   return (
     <div className="page-bg">
@@ -34,31 +32,7 @@ const SignUpForm = ({
                 height="55"
               />
             </Link>
-            <h1 className="h3 mb-3 font-weight-bold">Join Questioner</h1>
-            <p className="text-muted">
-              ...you could be the first to ask the right questions
-            </p>
-          </div>
-          <div className="form-label-group">
-            <label className="form-label" htmlFor="inputUsername">
-              Username
-            </label>
-            <input
-              onBlur={blur}
-              onChange={changed}
-              type="text"
-              id="inputUsername"
-              name="username"
-              className="py-4 mb-3 form-control"
-              placeholder="Pick a username"
-              value={values.username}
-              required
-            />
-            {formError.username ? (
-              <p className="mt-n2 text-danger font-weight-lighter">
-                {formError.username}
-              </p>
-            ) : null}
+            <h1 className="h3 mb-3 font-weight-bold">Welcome back</h1>
           </div>
           <div className="form-label-group">
             <label className="form-label" htmlFor="inputEmail">
@@ -82,7 +56,7 @@ const SignUpForm = ({
             ) : null}
           </div>
           <div className="form-row">
-            <div className="col-md-6 ">
+            <div className="col-md-12 ">
               <label className="form-label" htmlFor="inputPassword">
                 Password
               </label>
@@ -103,27 +77,6 @@ const SignUpForm = ({
                 </p>
               ) : null}
             </div>
-            <div className="col-md-6">
-              <label className="form-label" htmlFor="confirmPassword">
-                Confirm password
-              </label>
-              <input
-                onBlur={blur}
-                onChange={changed}
-                type="password"
-                id="confirmPassword"
-                value={values.confirmPassword}
-                name="password confirmation"
-                className="py-4 mb-3 form-control"
-                placeholder="Create a password"
-                required
-              />
-              {formError['password confirmation'] ? (
-                <p className="mt-n2 text-danger font-weight-lighter">
-                  {formError['password confirmation']}
-                </p>
-              ) : null}
-            </div>
           </div>
           {formattedServerError ? (
             <div className="alert alert-danger" role="alert">
@@ -134,16 +87,15 @@ const SignUpForm = ({
             {loading ? (
               <span className="spinner-border text-light" role="status" />
             ) : (
-              'SIGN UP FOR QUESTIONER'
+              'Log in'
             )}
           </button>
           <p className="mt-5 mb-3 text-muted text-center">
-            Already have an account?
-            <Link to="/Auth" onClick={() => onNavClick('login')} className="ml-1 form-btn-sub btn btn-outline-success text-success ">
-             Log in
+            Yet to have an account?
+            <Link to="/Auth" onClick={() => onNavClick('signup')} className="ml-1 form-btn-sub btn btn-outline-success text-success ">
+             Sign up
               {' '}
             </Link>
-
           </p>
         </form>
       </div>
@@ -151,7 +103,7 @@ const SignUpForm = ({
   );
 };
 
-SignUpForm.propTypes = {
+LoginForm.propTypes = {
   blur: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
   changed: PropTypes.func.isRequired,
@@ -161,4 +113,4 @@ SignUpForm.propTypes = {
   values: PropTypes.object.isRequired,
   onNavClick: PropTypes.func.isRequired
 };
-export default SignUpForm;
+export default LoginForm;
