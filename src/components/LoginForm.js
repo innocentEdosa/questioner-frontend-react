@@ -45,7 +45,7 @@ const LoginForm = ({
               id="inputEmail"
               name="email"
               value={values.email}
-              className="py-4 mb-3 form-control"
+              className="py-4 mb-3 form-control-lg form-control"
               placeholder="You@example.com"
               required
             />
@@ -66,7 +66,7 @@ const LoginForm = ({
                 type="password"
                 name="password"
                 id="inputPassword"
-                className="py-4 mb-3 form-control"
+                className="py-4 mb-3 form-control form-control-lg"
                 placeholder="Create a password"
                 value={values.password}
                 required

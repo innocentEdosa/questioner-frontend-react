@@ -1,6 +1,8 @@
 @import "./abstracts/variables";
 @import "base/base";
 @import "./base/typography";
+@import "./base/utilities";
 @import "./components/signUpForm";
 @import "./components/Navigation";
+@import "./components/createModalForm";
 @import "./pages/signup";

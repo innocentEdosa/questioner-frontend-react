@@ -49,7 +49,7 @@ const SignUpForm = ({
               type="text"
               id="inputUsername"
               name="username"
-              className="py-4 mb-3 form-control"
+              className="py-4 mb-3 form-control form-control-lg"
               placeholder="Pick a username"
               value={values.username}
               required
@@ -71,7 +71,7 @@ const SignUpForm = ({
               id="inputEmail"
               name="email"
               value={values.email}
-              className="py-4 mb-3 form-control"
+              className="py-4 mb-3 form-control form-control-lg"
               placeholder="You@example.com"
               required
             />
@@ -92,7 +92,7 @@ const SignUpForm = ({
                 type="password"
                 name="password"
                 id="inputPassword"
-                className="py-4 mb-3 form-control"
+                className="py-4 mb-3 form-control form-control-lg"
                 placeholder="Create a password"
                 value={values.password}
                 required
@@ -114,7 +114,7 @@ const SignUpForm = ({
                 id="confirmPassword"
                 value={values.confirmPassword}
                 name="password confirmation"
-                className="py-4 mb-3 form-control"
+                className="py-4 mb-3 form-control form-control-lg"
                 placeholder="Create a password"
                 required
               />

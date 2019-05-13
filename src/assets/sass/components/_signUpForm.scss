@@ -32,7 +32,7 @@
     }
   }
 
-  input {
+  input, textarea {
     background-color: white;
     &:focus {
       background-color: white;
@@ -46,6 +46,7 @@
 
     &::placeholder {
       color: rgb(196, 196, 196);
+      font-size: 1rem;
     }
   }
 }

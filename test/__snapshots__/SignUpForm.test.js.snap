@@ -47,7 +47,7 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
           Username
         </label>
         <input
-          className="py-4 mb-3 form-control"
+          className="py-4 mb-3 form-control form-control-lg"
           id="inputUsername"
           name="username"
           placeholder="Pick a username"
@@ -65,7 +65,7 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
           Email address
         </label>
         <input
-          className="py-4 mb-3 form-control"
+          className="py-4 mb-3 form-control form-control-lg"
           id="inputEmail"
           name="email"
           placeholder="You@example.com"
@@ -91,7 +91,7 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
             Password
           </label>
           <input
-            className="py-4 mb-3 form-control"
+            className="py-4 mb-3 form-control form-control-lg"
             id="inputPassword"
             name="password"
             placeholder="Create a password"
@@ -109,7 +109,7 @@ exports[`<SignUpForm /> Should match the snapshot 1`] = `
             Confirm password
           </label>
           <input
-            className="py-4 mb-3 form-control"
+            className="py-4 mb-3 form-control form-control-lg"
             id="confirmPassword"
             name="password confirmation"
             placeholder="Create a password"
