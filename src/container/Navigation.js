@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Nav from '../components/Nav';
 import { authNav } from '../store/actions/authActions';
+import { openMeetupModal } from '../store/actions/adminActions';
 
 
-const Navigation = ({ isAuthenticated, onNavClick }) => {
+const Navigation = ({ isAuthenticated, onNavClick, onCreateMeetup }) => {
   let link;
   const structureLinks = () => {
     if (!isAuthenticated) {
@@ -17,6 +18,9 @@ const Navigation = ({ isAuthenticated, onNavClick }) => {
         </Link>,
         <Link to="/Auth" onClick={() => onNavClick('signup')} className="nav-item m-2  navigation-btn nav-link">
         Sign up
+        </Link>,
+        <Link to="/Admin" onClick={() => onCreateMeetup()} className="nav-item m-2  navigation-btn nav-link">
+        Create Meetup
         </Link>
       ];
     }
@@ -34,12 +38,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onNavClick: nav => dispatch(authNav(nav))
+  onNavClick: nav => dispatch(authNav(nav)),
+  onCreateMeetup: () => dispatch(openMeetupModal())
 });
 
 Navigation.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
-  onNavClick: PropTypes.func.isRequired
+  onNavClick: PropTypes.func.isRequired,
+  onCreateMeetup: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

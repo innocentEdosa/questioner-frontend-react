@@ -2,3 +2,5 @@ export const LOADING = 'LOADING';
 export const AUTH_SUCCESSFUL = 'AUTH_SUCCESSFUL';
 export const AUTH_FAILED = 'AUTH_FAILED';
 export const AUTH_NAV = 'AUTH_NAV';
+export const OPEN_MEETUP_MODAL = 'OPEN_MEETUP_MODAL';
+export const CLOSE_MEETUP_MODAL = 'CLOSE_MEETUP_MODAL';
