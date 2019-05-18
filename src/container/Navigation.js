@@ -11,7 +11,7 @@ const Navigation = ({ isAuthenticated, onNavClick, onCreateMeetup }) => {
   let link;
   const structureLinks = () => {
     if (!isAuthenticated) {
-      link = [
+      return link = [
         <Link to="/Auth" onClick={() => onNavClick('login')} className="nav-item m-2  navigation-btn nav-link ">
         Log in
           {' '}
@@ -19,11 +19,13 @@ const Navigation = ({ isAuthenticated, onNavClick, onCreateMeetup }) => {
         <Link to="/Auth" onClick={() => onNavClick('signup')} className="nav-item m-2  navigation-btn nav-link">
         Sign up
         </Link>,
-        <Link to="/Admin" onClick={() => onCreateMeetup()} className="nav-item m-2  navigation-btn nav-link">
-        Create Meetup
-        </Link>
       ];
     }
+    link = [
+      <Link to="/Admin" onClick={() => onCreateMeetup()} className="nav-item m-2  navigation-btn nav-link">
+      Create Meetup
+      </Link>
+    ];
   };
 
   structureLinks();

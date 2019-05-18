@@ -1,3 +1,4 @@
+
 const authFormValidator = (fieldName, formInputs) => {
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/g;
@@ -55,6 +56,38 @@ const authFormValidator = (fieldName, formInputs) => {
       }
       break;
 
+    case 'title':
+      if (symbolRegex.test(fieldValue)) {
+        error[
+          fieldName
+        ] = `${fieldName} should not contain symbols`;
+        return error;
+      }
+      if (fieldValue.length < 3) {
+        error[
+          fieldName
+        ] = `Your ${fieldName} is too short. ${fieldName} should be more than 2 characters.`;
+        return error;
+      }
+      break;
+
+    case 'location':
+      if (fieldValue.length < 15) {
+        error[
+          fieldName
+        ] = `Your ${fieldName} is too short. ${fieldName} should be more than 15 characters.`;
+        return error;
+      }
+      break;
+
+    case 'description':
+      if (fieldValue.length < 30) {
+        error[
+          fieldName
+        ] = `Your ${fieldName} is too short. ${fieldName} should be more than 30 characters.`;
+        return error;
+      }
+      break;
     default:
       return error;
   }

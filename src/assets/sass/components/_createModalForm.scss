@@ -10,7 +10,10 @@
   max-width: 50rem;;
 }
 .modal {
-  transition: all 5s;
+  transition: all .3s;
+  position: absolute !important;
+  height: 0vh;
+  min-height: 100vh !important;
 }
 
 .closeModal {
