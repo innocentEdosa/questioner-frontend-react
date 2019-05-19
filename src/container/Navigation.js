@@ -6,33 +6,51 @@ import Nav from '../components/Nav';
 import { authNav } from '../store/actions/authActions';
 import { openMeetupModal } from '../store/actions/adminActions';
 
-
 const Navigation = ({ isAuthenticated, onNavClick, onCreateMeetup }) => {
   let link;
   const structureLinks = () => {
     if (!isAuthenticated) {
-      return link = [
-        <Link to="/Auth" onClick={() => onNavClick('login')} className="nav-item m-2  navigation-btn nav-link ">
-        Log in
+      link = [
+        <Link
+          to="/Auth"
+          onClick={() => onNavClick('login')}
+          className="nav-item m-2  navigation-btn nav-link "
+        >
+          Log in
           {' '}
         </Link>,
-        <Link to="/Auth" onClick={() => onNavClick('signup')} className="nav-item m-2  navigation-btn nav-link">
-        Sign up
-        </Link>,
+        <Link
+          to="/Auth"
+          onClick={() => onNavClick('signup')}
+          className="nav-item m-2  navigation-btn nav-link"
+        >
+          Sign up
+        </Link>
       ];
+      return link;
     }
     link = [
-      <Link to="/Admin" onClick={() => onCreateMeetup()} className="nav-item m-2  navigation-btn nav-link">
-      Create Meetup
+      <Link
+        to="/Admin"
+        onClick={() => onCreateMeetup()}
+        className="nav-item m-2  navigation-btn nav-link"
+      >
+        Create Meetup
+      </Link>,
+      // i would still remove this guy before pushing o
+      <Link
+        to="/meetups"
+      // onClick={() => onCreateMeetup()}
+        className="nav-item m-2  navigation-btn nav-link"
+      >
+      show meetups
       </Link>
     ];
   };
 
   structureLinks();
 
-  return (
-    <Nav isAuthenticated={isAuthenticated}>{link}</Nav>
-  );
+  return <Nav isAuthenticated={isAuthenticated}>{link}</Nav>;
 };
 
 const mapStateToProps = state => ({
@@ -50,4 +68,5 @@ Navigation.propTypes = {
   onCreateMeetup: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connect(mapStateToProps,
+  mapDispatchToProps)(Navigation);

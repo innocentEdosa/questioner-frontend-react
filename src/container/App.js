@@ -5,6 +5,7 @@ import Navigation from './Navigation';
 import Home from '../components/Home';
 import Login from './Login';
 import Auth from './Auth';
+import AllMeetup from './AllMeetup';
 import Admin from './Admin';
 
 const App = () => (
@@ -15,6 +16,7 @@ const App = () => (
       <Route path="/login" component={Login} />
       <Route path="/Auth" component={Auth} />
       <Route path="/admin" component={Admin} />
+      <Route path="/meetups" component={AllMeetup} />
     </Switch>
   </div>
 );

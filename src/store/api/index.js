@@ -17,3 +17,4 @@ const getAxiosInstance = () => {
 export const signup = params => getAxiosInstance().post('/auth/signup', params);
 export const login = params => getAxiosInstance().post('/auth/login', params);
 export const postMeetup = params => getAxiosInstance().post('/meetups', params);
+export const getMeetups = () => getAxiosInstance().get('/meetups');
