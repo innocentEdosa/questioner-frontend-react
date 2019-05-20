@@ -16,7 +16,6 @@ render(<Provider store={Store}>
   <BrowserRouter>
     <App />
   </BrowserRouter>
-  ,
   <ToastContainer position="top-center" hideProgressBar draggable />
 </Provider>,
 document.getElementById('root'));
