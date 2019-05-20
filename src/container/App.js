@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Navigation from './Navigation';
-import Home from '../components/Home';
+import Home from './Home';
 import Login from './Login';
 import Auth from './Auth';
 import AllMeetup from './AllMeetup';

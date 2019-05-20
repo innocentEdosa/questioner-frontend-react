@@ -8,13 +8,18 @@ const MeetupCard = ({ meetup }) => (
       <div className="row no-gutters">
         <div className="col-md-3">
           <img
-            style={{ width: '100%', height: '100%', borderRadius: '0px' }}
-            className="cardImg card-img"
+            style={{
+              minWidth: '270px',
+              miWidth: '270px',
+              height: '200px',
+              borderRadius: '0px'
+            }}
+            className="card-img"
             src={
-                meetup.images
-                  ? meetup.images
-                  : 'https://ui-avatars.com/api/?bold=true&background=3157BE&color=fff&name=+Questioner+Questioner'
-              }
+              meetup.images
+                ? meetup.images
+                : 'https://ui-avatars.com/api/?bold=true&background=3157BE&color=fff&name=+Questioner+Questioner'
+            }
             alt=""
           />
         </div>
@@ -26,7 +31,7 @@ const MeetupCard = ({ meetup }) => (
             <p className="card-text">{truncate(meetup.description, 80)}</p>
             <a href="/" className="btn cardbtn  mb-n2 btn-primary">
               {' '}
-                Post question
+              Post question
               {' '}
             </a>
           </div>
@@ -41,7 +46,7 @@ const MeetupCard = ({ meetup }) => (
           </div>
           <p className="mt-3 text-center d-none d-md-block">
             <small className="text-muted">
-                date:
+              date:
               {' '}
               <span className="cardDate">
                 {dateFormatter(meetup.happeningOn)}
@@ -50,7 +55,7 @@ const MeetupCard = ({ meetup }) => (
           </p>
           <p className="mt-3 d-sm-block d-md-none">
             <small className="text-muted">
-                date:
+              date:
               {' '}
               <span className="cardDate">2/may/2019</span>
             </small>

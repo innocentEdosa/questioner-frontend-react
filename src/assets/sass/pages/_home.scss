@@ -1,0 +1,18 @@
+.meetupSection {
+  padding: 2rem 0rem;
+}
+
+.showMoreBtn {
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 0.9rem;
+  color:  #05c46b;
+  text-align: center;
+  border-radius: .2rem;
+  border: 1px solid#05c46b;
+
+  &:hover {
+    background-color: #05c46b;
+    color: #fff;
+  }
+}
