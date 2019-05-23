@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { truncate, dateFormatter } from '../helper/formatMeetup';
 
 const MeetupCard = ({ meetup }) => (
-  <div>
+  <Link to={`/meetup/${meetup.id}`}>
     <div className="card cardWrapper mt-5">
       <div className="row no-gutters">
         <div className="col-md-3">
@@ -63,7 +64,7 @@ const MeetupCard = ({ meetup }) => (
         </div>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 MeetupCard.propTypes = {

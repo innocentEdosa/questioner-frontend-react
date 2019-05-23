@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import adminReducer from './adminReducer';
-import AllMeetupsReducer from './AllMeetupsReducer';
+import AllMeetupsReducer from './meetupsReducer';
 import homeReducer from './homeReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   admin: adminReducer,
-  AllMeetups: AllMeetupsReducer,
+  allMeetups: AllMeetupsReducer,
   home: homeReducer,
 });
 

@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import * as actions from './actionTypes';
-import { getMeetups } from '../api/index';
+import { getMeetups, fetchSpecificMeetup } from '../api/index';
 
 export const getAllMeetupsStart = () => ({
   type: actions.FETCH_MEETUPS_START
@@ -16,6 +16,18 @@ export const getAllMeetupsFailed = error => ({
   error
 });
 
+export const getSpecificMeetupStart = () => ({
+  type: actions.FETCH_SPECIFIC_MEETUP_START
+});
+
+export const getSpecificMeetupSucceeded = meetup => ({
+  type: actions.FETCH_SPECIFIC_MEETUP_SUCCEEDED,
+  meetup
+});
+
+export const getSpecificMeetupFailed = () => ({
+  type: actions.FETCH_SPECIFIC_MEETUP_FAILED
+});
 export const getAllMeetups = () => async (dispatch) => {
   dispatch(getAllMeetupsStart());
   try {
@@ -28,5 +40,18 @@ export const getAllMeetups = () => async (dispatch) => {
     const error = err.response.data;
     dispatch(getAllMeetupsFailed(error));
     toast.failed('Something went wrong! Cant get all meetups now');
+  }
+};
+
+export const getSpecificMeetup = id => async (dispatch) => {
+  dispatch(getSpecificMeetupStart());
+  try {
+    const response = await fetchSpecificMeetup(id);
+    if (response) {
+      const meetup = response.data.data[0];
+      dispatch(getSpecificMeetupSucceeded(meetup));
+    }
+  } catch (error) {
+    dispatch(getSpecificMeetupFailed());
   }
 };
