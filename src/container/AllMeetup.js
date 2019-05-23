@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MeetupList from '../components/MeetupList';
 import Loader from '../components/Loader';
-import { getAllMeetups } from '../store/actions/allMeetupsAction';
+import { getAllMeetups } from '../store/actions/meetupsAction';
 
 const AllMeetup = ({ getMeetups, gettingMeetups, meetups }) => {
   useEffect(() => {
@@ -19,8 +19,8 @@ AllMeetup.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  gettingMeetups: state.AllMeetups.gettingMeetups,
-  meetups: state.AllMeetups.meetups
+  gettingMeetups: state.allMeetups.gettingMeetups,
+  meetups: state.allMeetups.meetups
 });
 
 const mapDispatchToProps = dispatch => ({

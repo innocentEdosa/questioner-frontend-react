@@ -1,3 +1,10 @@
 body {
   font-family: $main-font;
 }
+
+.heading-primary {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: rgb(32, 32, 56);
+  letter-spacing: .05rem;
+}

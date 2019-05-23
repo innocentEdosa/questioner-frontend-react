@@ -7,7 +7,7 @@ const Nav = ({ children }) => (
   <nav className="navbar navigation navbar-expand-lg navbar-dark bg-dark">
     <div className="container">
       <Link to="/" className="navbar-brand" href="/">
-        <img src="assets/img/logo.png" width="40" height="40" alt="" />
+        <img src="/assets/img/logo.png" width="40" height="40" alt="" />
         <span className="px-2 text-light">QUESTIONER</span>
       </Link>
       <button

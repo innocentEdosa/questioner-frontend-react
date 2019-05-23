@@ -1,0 +1,104 @@
+.specificMeetup {
+  background-color: #fff;
+  box-shadow: 0 0.1rem 0.1rem #9797971a;
+
+  &MainText {
+    color: rgb(45, 45, 87);
+    font-size: 1.8rem;
+    font-weight: 900;
+  }
+
+  &SubText {
+    font-size: 1.2rem;
+  }
+
+  &Rsvp {
+
+    width: 39%;
+    text-align: center;
+    padding: 0.25rem;
+    position: relative;
+    perspective: 1900;
+
+    &Btn {
+      &, &:hover, &:link,&:focus, &:visited, &:active {
+        background-color: transparent; 
+        box-shadow: none;
+        outline: none;
+        border-radius: 0px;
+        padding: .3rem 1.6rem;
+        color: #fff;
+        border: 1px solid #fff;
+        cursor: pointer;
+      }
+    }
+
+    &-side {
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      transition: .8s;
+      padding: 0.8rem;
+    }
+
+    &-back {
+      background-color: rgb(5, 196, 107);
+      transform: rotateY(180deg);
+      z-index: 10;
+      transition: all .8s;
+      border: 1px solid rgb(5, 196, 107);
+      background-color: rgb(5, 196, 107);
+      padding: inherit;
+    }
+
+    &-front {
+      background-color: #fff;
+      border: 1px solid rgb(5, 196, 107);
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      backface-visibility: hidden;
+      z-index: 12;
+      color: rgb(32, 32, 56);
+    }
+
+    &:hover &-back {
+      transform: rotateY(0deg);
+    }
+
+    &:hover &-front {
+      transform: rotateY(180deg);
+    }
+  }
+}
+
+.card-schedule-front {
+  background-color: #fff;
+  border: 1px solid rgb(5, 196, 107);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  z-index: 12;
+  color: rgb(32, 32, 56);
+}
+
+.card-schedule-back {
+  background-color: rgb(5, 196, 107);
+  transform: rotateY(180deg);
+  z-index: 10;
+}
+
+.card-schedule:hover .card-schedule-front {
+  transform: rotateY(180deg);
+}
+
+.card-schedule:hover .card-schedule-back {
+  transform: rotateY(0deg);
+}
+
+.meetupDetails {
+  color: #292929;
+  line-height: 1.9rem;
+  font-family: $meetup-font;
+  font-size: 1rem;
+}

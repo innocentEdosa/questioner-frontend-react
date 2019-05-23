@@ -7,16 +7,20 @@ import Login from './Login';
 import Auth from './Auth';
 import AllMeetup from './AllMeetup';
 import Admin from './Admin';
+import Meetup from './Meetup';
 
+const NotFound = () => (<div>this page is nof fo</div>);
 const App = () => (
   <div>
     <Navigation />
     <Switch>
-      <Route path="/" exact component={Home} />
+      <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/Auth" component={Auth} />
       <Route path="/admin" component={Admin} />
-      <Route path="/meetups" component={AllMeetup} />
+      <Route exact path="/meetups" component={AllMeetup} />
+      <Route path="/meetup/:id" component={Meetup} />
+      <Route component={NotFound} />
     </Switch>
   </div>
 );
