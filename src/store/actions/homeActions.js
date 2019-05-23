@@ -18,14 +18,14 @@ export const getTrendingMeetupsSucceeded = trendingMeetups => ({
   type: actions.FETCH_TRENDING_MEETUPS_SUCCEEDED,
   trendingMeetups,
 });
-export const getRandomMeetups = () => async (dispatch) => {
+export const getRandomMeetups = (number = 4) => async (dispatch) => {
   dispatch(getRandomMeetupsStart());
   try {
-    const response = await fetchRandomMeetups();
+    const response = await fetchRandomMeetups(number);
     const randomMeetups = response.data.data;
     dispatch(getRandomMeetupsSucceeded(randomMeetups));
   } catch (error) {
-    console.log(error.response.data);
+    // console.log(error.response.data);
   }
 };
 
@@ -38,7 +38,6 @@ export const getTrendingMeetups = () => async (dispatch) => {
       dispatch(getTrendingMeetupsSucceeded(trendingMeetups));
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
-

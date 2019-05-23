@@ -34,7 +34,7 @@ const getTrendingMeetupsSucceeded = (state, action) => {
 
 const getRandomMeetupsSucceeded = (state, action) => {
   const newState = { ...state };
-  newState.randomMeetups = [...state.randomMeetups, ...action.randomMeetups];
+  newState.randomMeetups = [...action.randomMeetups];
   return {
     ...newState,
     loadingRandomMeetups: false

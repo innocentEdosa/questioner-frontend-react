@@ -8,3 +8,12 @@ body {
   color: rgb(32, 32, 56);
   letter-spacing: .05rem;
 }
+
+.subMeetupText {
+  font-family: $meetup-font;
+  line-height: 1.7rem;
+}
+
+.subMeetupHeader {
+  font-weight: 600;
+}

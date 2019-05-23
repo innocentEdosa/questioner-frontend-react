@@ -21,7 +21,7 @@ const Home = ({
   trendingMeetups
 }) => {
   useEffect(() => {
-    onGetRandomMeetups();
+    onGetRandomMeetups(4);
   }, []);
 
   useEffect(() => {
@@ -129,7 +129,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onGetRandomMeetups: () => dispatch(getRandomMeetups()),
+  onGetRandomMeetups: number => dispatch(getRandomMeetups(number)),
   onGetTrendingMeetups: () => dispatch(getTrendingMeetups()),
   onNavClick: nav => dispatch(authNav(nav))
 });
