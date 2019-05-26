@@ -4,7 +4,7 @@ import ScheduleCard from './ScheduleCard';
 import { dateFormatter } from '../helper/formatMeetup';
 
 const SpecificMeetup = ({ meetup }) => (
-  <div className=" col-md-7">
+  <div>
     <h3 className="text-uppercase font-weight-bolder heading-primary">
       Details
     </h3>

@@ -1,6 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import {
+  faStroopwafel,
+  faThumbsUp,
+  faThumbsDown,
+  faCommentAlt
+} from '@fortawesome/free-solid-svg-icons';
 import Navigation from './Navigation';
 import Home from './Home';
 import Login from './Login';
@@ -9,7 +17,9 @@ import AllMeetup from './AllMeetup';
 import Admin from './Admin';
 import Meetup from './Meetup';
 
-const NotFound = () => (<div>this page is nof fo</div>);
+library.add(fab, faCommentAlt, faStroopwafel, faThumbsUp, faThumbsDown);
+
+const NotFound = () => <div>this page is nof fo</div>;
 const App = () => (
   <div>
     <Navigation />

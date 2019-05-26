@@ -22,6 +22,10 @@
   "homepage": "https://github.com/innocentEdosa/questioner-frontend-react#readme",
   "dependencies": {
     "@babel/runtime": "^7.4.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-brands-svg-icons": "^5.8.2",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.1",
@@ -38,6 +42,7 @@
     "react-router-dom": "^5.0.0",
     "react-test-renderer": "^16.8.6",
     "react-toastify": "^5.1.0",
+    "react-transition-group": "^4.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "style-loader": "^0.23.1",
