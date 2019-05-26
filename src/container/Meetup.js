@@ -9,8 +9,8 @@ import { getSpecificMeetup } from '../store/actions/meetupsAction';
 import MeetupJumbotron from '../components/MeetupJumbotron';
 import SubMeetupList from '../components/SubMeetupList';
 import { getRandomMeetups } from '../store/actions/homeActions';
-import Questions from '../components/Questions';
-import { createQuestion } from '../store/actions/questionActions';
+import QuestionList from '../components/QuestionList';
+import { createQuestion, getQuestions } from '../store/actions/questionActions';
 
 const Meetup = ({
   loadingSpecificMeetup,
@@ -23,7 +23,9 @@ const Meetup = ({
   meetup,
   creatingQuestion,
   onCreateQuestion,
-  questions
+  questions,
+  gettingQuestions,
+  onGetQuestion
 }) => {
   if (loadingSpecificMeetupFailed) {
     return <Redirect to="/notfound" />;
@@ -47,6 +49,10 @@ const Meetup = ({
   }, [match.params.id]);
 
   useEffect(() => {
+    onGetQuestion(meetup.id);
+  }, [match.params.id, meetup]);
+
+  useEffect(() => {
     onGetRandomMeetups(3);
   }, [match.params.id]);
 
@@ -63,13 +69,24 @@ const Meetup = ({
         <div className="row align-items-start">
           <div className="col-md-7">
             <SpecificMeetup meetup={meetup} />
+            <div className="mb-n4 mt-5">
+              {questions.length === 0
+                ? 'No questions yet'
+                : questions.length === 1
+                  ? '1 question already'
+                  : `${questions.length} questions already`}
+            </div>
             <QuestionForm
               creatingQuestion={creatingQuestion}
               createQuestion={postQuestion}
               shouldOpen={questionFormControl.shouldOpen}
               openForm={openFormHandler}
             />
-            <Questions question={questions} />
+            {!gettingQuestions ? (
+              <QuestionList questions={questions} />
+            ) : (
+              <Loader />
+            )}
           </div>
           <div className="sticky-top col-md-4 offset-0 offset-md-1 mt-5 mt-md-0">
             <p className="text-uppercase font-weight-bolder heading-primary">
@@ -94,13 +111,15 @@ const mapStateToProps = state => ({
   loadingRandomMeetups: state.home.loadingRandomMeetups,
   randomMeetups: state.home.randomMeetups,
   creatingQuestion: state.question.creatingQuestion,
-  questions: state.question.question
+  gettingQuestions: state.question.gettingQuestions,
+  questions: state.question.questions
 });
 
 const mapDispatchToProps = dispatch => ({
   onGetSpecificMeetup: id => dispatch(getSpecificMeetup(id)),
   onGetRandomMeetups: number => dispatch(getRandomMeetups(number)),
-  onCreateQuestion: (question, meetupId) => dispatch(createQuestion(question, meetupId))
+  onCreateQuestion: (question, meetupId) => dispatch(createQuestion(question, meetupId)),
+  onGetQuestion: id => dispatch(getQuestions(id))
 });
 
 Meetup.propTypes = {
@@ -114,7 +133,9 @@ Meetup.propTypes = {
   loadingRandomMeetups: PropTypes.bool.isRequired,
   onCreateQuestion: PropTypes.func.isRequired,
   creatingQuestion: PropTypes.bool.isRequired,
-  questions: PropTypes.shape({}).isRequired
+  questions: PropTypes.shape({}).isRequired,
+  gettingQuestions: PropTypes.bool.isRequired,
+  onGetQuestion: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps,

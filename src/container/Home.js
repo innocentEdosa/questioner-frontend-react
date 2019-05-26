@@ -35,7 +35,7 @@ const Home = ({
     <div>
       <HeroSection
         mainText="CROWD SOURCE QUESTIONS"
-        subText="Join Questioner, Ask the right questions and help organiser plan better for your next meetup"
+        subText="Join Questioner, Ask the right questions and help organizers plan better for your next meetup"
         callToAction="sign up for questioner"
         height="85vh"
         paddingTop="11rem"
