@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Questions = () => (
+const Questions = ({ question }) => (
   <div className="my-5 card">
     <div className="questionUserDetails">
       <div className="questionUserImage m-3">
@@ -13,15 +13,12 @@ const Questions = () => (
         />
       </div>
       <span className="questionUserName d-inline-block mt-4">
-          Innocent something something
+        {(question.username) ? question.username : 'you'}
       </span>
-      <p className="text-muted"> 100 days ago </p>
+      <p className="text-muted">{(question.createdAt) ? question.createdAt : null} </p>
     </div>
     <div className="card-body mt-n2">
-        Lorem30 is adsjjasdjosjjsfjojjsjofjsojojasodfjoasjfoasjfojasjoasfdoajsf
-        sfjasfjdijasfjasfijosjfdonsfdnosndoijnsaojosjfojsdfnasfajas
-        sdfoiasjfojsfjsojfosajofjosjfosjfojsaofjasojfoansfsojfjasdosaasdf
-        fsdfjsojdfosjaofsajdojastfasodjfsojosfd
+      {(question.body) ? question.body : null}
     </div>
     <div>
       <span className="float-right d-inline-block mb-2 mt-n2 mx-4">
@@ -31,18 +28,18 @@ const Questions = () => (
           aria-label="First group"
         >
           <button type="button" className="btn mx-1">
-            <span className="mx-1 ">20</span>
+            <span className="mx-1 ">{(question.upvotes) ? question.upvotes : null}</span>
             <FontAwesomeIcon icon="thumbs-up" />
             {' '}
           </button>
           <button type="button" className="btn mx-1">
-            <span className="mx-1 ">20</span>
+            <span className="mx-1 ">{(question.downvotes) ? question.downvotes : null}</span>
             {' '}
             <FontAwesomeIcon icon="thumbs-down" />
             {' '}
           </button>
           <button type="button" className="btn mx-1">
-            <span className="mx-1 ">20</span>
+            <span className="mx-1 ">{(question.comment) ? question.comment : 10}</span>
             {' '}
             <FontAwesomeIcon icon="comment-alt" />
             {' '}
