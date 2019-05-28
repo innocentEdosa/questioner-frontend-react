@@ -2,7 +2,7 @@ import * as actions from '../actions/actionTypes';
 
 const getState = () => {
   const token = localStorage.getItem('token');
-  const user = localStorage.getItem('user');
+  const user = JSON.parse(window.localStorage.getItem('user'));
   const initialState = (user && token) ? {
     authType: 'login',
     loading: false,

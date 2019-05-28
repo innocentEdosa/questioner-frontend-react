@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { decode } from 'jsonwebtoken';
 import * as actions from './actionTypes';
 import { signup, login } from '../api/index';
 
@@ -37,6 +38,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     const response = await signup(authData);
     if (response) {
       const { token, user } = response.data.data[0];
+
       localStorage.setItem('user', user);
       localStorage.setItem('token', token);
       dispatch(authSuccessful(token, user));
@@ -58,7 +60,10 @@ export const logIn = (email, password) => async (dispatch) => {
     const response = await login(authData);
     if (response) {
       const { token, user } = response.data.data[0];
-      localStorage.setItem('user', user);
+      const decodedToken = decode(token);
+      user.id = decodedToken.userId;
+      user.isAdmin = decodedToken.isAdmin;
+      localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', token);
       dispatch(authSuccessful(token, user));
       toast.success('Your log in was successful');

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Questions = ({ question }) => (
@@ -13,12 +14,15 @@ const Questions = ({ question }) => (
         />
       </div>
       <span className="questionUserName d-inline-block mt-4">
-        {(question.username) ? question.username : 'you'}
+        {question.username ? question.username : 'you'}
       </span>
-      <p className="text-muted">{(question.createdAt) ? question.createdAt : null} </p>
+      <p className="text-muted">
+        {question.createdAt ? question.createdAt : null}
+        {' '}
+      </p>
     </div>
     <div className="card-body mt-n2">
-      {(question.body) ? question.body : null}
+      {question.body ? question.body : null}
     </div>
     <div>
       <span className="float-right d-inline-block mb-2 mt-n2 mx-4">
@@ -28,18 +32,24 @@ const Questions = ({ question }) => (
           aria-label="First group"
         >
           <button type="button" className="btn mx-1">
-            <span className="mx-1 ">{(question.upvotes) ? question.upvotes : null}</span>
+            <span className="mx-1 ">
+              {question.upvotes ? question.upvotes : null}
+            </span>
             <FontAwesomeIcon icon="thumbs-up" />
             {' '}
           </button>
           <button type="button" className="btn mx-1">
-            <span className="mx-1 ">{(question.downvotes) ? question.downvotes : null}</span>
+            <span className="mx-1 ">
+              {question.downvotes ? question.downvotes : null}
+            </span>
             {' '}
             <FontAwesomeIcon icon="thumbs-down" />
             {' '}
           </button>
           <button type="button" className="btn mx-1">
-            <span className="mx-1 ">{(question.comment) ? question.comment : 10}</span>
+            <span className="mx-1 ">
+              {question.comment ? question.comment : 10}
+            </span>
             {' '}
             <FontAwesomeIcon icon="comment-alt" />
             {' '}
@@ -50,4 +60,7 @@ const Questions = ({ question }) => (
   </div>
 );
 
+Questions.propTypes = {
+  question: PropTypes.shape({}).isRequired
+};
 export default Questions;

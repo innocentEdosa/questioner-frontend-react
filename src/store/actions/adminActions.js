@@ -2,8 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as actions from './actionTypes';
-import { postMeetup } from '../api/index';
-
+import { postMeetup, fetchAdminMeetups } from '../api/index';
 
 export const openModal = () => ({
   type: actions.OPEN_MEETUP_MODAL,
@@ -54,5 +53,35 @@ export const createMeetup = formInput => async (dispatch) => {
   } catch (err) {
     const error = err.response.data;
     dispatch(createMeetupFailed(error));
+  }
+};
+
+// getting meetups made by an admin
+
+export const getAdminMeetupsStart = () => ({
+  type: actions.FETCH_ADMIN_MEETUPS_START
+});
+
+export const getAdminMeetupsSucceeded = adminMeetups => ({
+  type: actions.FETCH_ADMIN_MEETUPS_SUCCEEDED,
+  adminMeetups
+});
+
+export const getAdminMeetupsFailed = error => ({
+  type: actions.FETCH_ADMIN_MEETUPS_FAILED,
+  error
+});
+
+export const getAdminMeetups = adminId => async (dispatch) => {
+  dispatch(getAdminMeetupsStart());
+  try {
+    const response = await fetchAdminMeetups(adminId);
+    if (response) {
+      const adminMeetups = response.data.data;
+      dispatch(getAdminMeetupsSucceeded(adminMeetups));
+    }
+  } catch (err) {
+    const error = err.response.data;
+    dispatch(getAdminMeetupsFailed(error));
   }
 };
