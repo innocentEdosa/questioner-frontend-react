@@ -23,3 +23,4 @@ export const fetchTrendingMeetups = () => getAxiosInstance().get('/meetups/trend
 export const fetchSpecificMeetup = meetId => getAxiosInstance().get(`/meetups/${meetId}`);
 export const postQuestion = params => getAxiosInstance().post('/questions', params);
 export const fetchQuestions = meetupId => getAxiosInstance().get(`/questions/meetups/${meetupId}`);
+export const fetchAdminMeetups = adminId => getAxiosInstance().get(`/meetups/${adminId}/meetups`);

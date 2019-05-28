@@ -3,6 +3,7 @@ import * as actions from '../actions/actionTypes';
 const initialState = {
   isCreateMeetupModal: false,
   creatingMeetup: false,
+  gettingMeetups: false,
   meetups: [],
   error: null
 };
@@ -33,6 +34,24 @@ const createMeetupFailed = (state, action) => ({
   creatingMeetup: false,
 });
 
+const getAdminMeetupsStart = state => ({
+  ...state,
+  gettingMeetups: true,
+  error: null,
+});
+
+const getAdminMeetupsSucceeded = (state, action) => ({
+  ...state,
+  gettingMeetups: false,
+  error: null,
+  meetups: action.adminMeetups
+});
+
+const getAdminMeetupsFailed = (state, action) => ({
+  ...state,
+  gettingMeetups: false,
+  error: action.error,
+});
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.CREATE_MEETUP_START: return createMeetupStart(state);
@@ -40,6 +59,9 @@ const adminReducer = (state = initialState, action) => {
     case actions.CREATE_MEETUP_FAILED: return createMeetupFailed(state, action);
     case actions.OPEN_MEETUP_MODAL: return meetupModalHandler(state, action);
     case actions.CLOSE_MEETUP_MODAL: return meetupModalHandler(state, action);
+    case actions.FETCH_ADMIN_MEETUPS_START: return getAdminMeetupsStart(state, action);
+    case actions.FETCH_ADMIN_MEETUPS_SUCCEEDED: return getAdminMeetupsSucceeded(state, action);
+    case actions.FETCH_ADMIN_MEETUPS_FAILED: return getAdminMeetupsFailed(state, action);
     default:
       return state;
   }
