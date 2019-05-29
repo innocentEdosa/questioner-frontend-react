@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import HeroSection from '../components/HeroSection';
+import MainHeroSection from '../components/MainHeroSection';
+import SubHeroSection from '../components/SubHeroSection';
 import MeetupList from '../components/MeetupList';
 import Loader from '../components/Loader';
 import Footer from '../components/Footer';
@@ -18,7 +19,9 @@ const Home = ({
   onGetRandomMeetups,
   randomMeetups,
   loadingTrendingMeetups,
-  trendingMeetups
+  trendingMeetups,
+  isAuthenticated,
+  user
 }) => {
   useEffect(() => {
     onGetRandomMeetups(4);
@@ -29,18 +32,15 @@ const Home = ({
   }, []);
 
   const onCTAclick = () => {
-    onNavClick('signup');
+    onNavClick('signup', '/');
   };
   return (
     <div>
-      <HeroSection
-        mainText="CROWD SOURCE QUESTIONS"
-        subText="Join Questioner, Ask the right questions and help organizers plan better for your next meetup"
-        callToAction="sign up for questioner"
-        height="85vh"
-        paddingTop="11rem"
+      <MainHeroSection
         onclick={onCTAclick}
         lead="/Auth"
+        isAuthenticated={isAuthenticated}
+        user={user}
       />
       {loadingRandomMeetups ? (
         <Loader />
@@ -70,11 +70,8 @@ const Home = ({
           </div>
         </div>
       )}
-      <HeroSection
-        mainText="GET THE RIGHT ANSWERS"
-        subText="You can finally get the right answers from the organiser of meetups, if you ask the right questions"
-        callToAction="join questioner"
-        height="50vh"
+      <SubHeroSection
+        isAuthenticated={isAuthenticated}
         onclick={onCTAclick}
         lead="/Auth"
       />
@@ -118,20 +115,24 @@ Home.propTypes = {
   onGetTrendingMeetups: PropTypes.func.isRequired,
   loadingTrendingMeetups: PropTypes.bool.isRequired,
   randomMeetups: PropTypes.shape({}).isRequired,
-  trendingMeetups: PropTypes.shape({}).isRequired
+  trendingMeetups: PropTypes.shape({}).isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.shape({}).isRequired
 };
 
 const mapStateToProps = state => ({
   loadingRandomMeetups: state.home.loadingRandomMeetups,
   loadingTrendingMeetups: state.home.loadingTrendingMeetups,
   randomMeetups: state.home.randomMeetups,
-  trendingMeetups: state.home.trendingMeetups
+  trendingMeetups: state.home.trendingMeetups,
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
 const mapDispatchToProps = dispatch => ({
   onGetRandomMeetups: number => dispatch(getRandomMeetups(number)),
   onGetTrendingMeetups: () => dispatch(getTrendingMeetups()),
-  onNavClick: nav => dispatch(authNav(nav))
+  onNavClick: (nav, path) => dispatch(authNav(nav, path))
 });
 export default connect(mapStateToProps,
   mapDispatchToProps)(Home);

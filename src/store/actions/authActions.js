@@ -1,5 +1,4 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import { decode } from 'jsonwebtoken';
 import * as actions from './actionTypes';
@@ -18,10 +17,15 @@ export const authFailed = error => ({
   error
 });
 
-export const authType = authform => ({
+export const authType = (authform, path) => ({
   type: actions.AUTH_NAV,
-  authType: authform
+  authType: authform,
+  path
 });
+
+export const adminAuth = () => (dispatch) => {
+  toast.success('You need to be login in as an admin to access admin routes');
+};
 
 export const signUp = (username, email, password) => async (dispatch) => {
   dispatch(authStart());
@@ -38,8 +42,10 @@ export const signUp = (username, email, password) => async (dispatch) => {
     const response = await signup(authData);
     if (response) {
       const { token, user } = response.data.data[0];
-
-      localStorage.setItem('user', user);
+      const decodedToken = decode(token);
+      user.id = decodedToken.userId;
+      user.isAdmin = decodedToken.isAdmin;
+      localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', token);
       dispatch(authSuccessful(token, user));
       toast.success('Your sign up was successful');
@@ -73,8 +79,49 @@ export const logIn = (email, password) => async (dispatch) => {
     dispatch(authFailed(error));
   }
 };
+export const logOut = () => ({
+  type: actions.LOG_USER_OUT
+});
 
-export const authNav = authform => async (dispatch) => {
-  dispatch(authType(authform));
-  return <Redirect to="/Auth" />;
+export const logOutUser = () => (dispatch) => {
+  localStorage.clear();
+  dispatch(logOut());
+};
+export const authNav = (authform, path) => async (dispatch) => {
+  dispatch(authType(authform, path));
+};
+
+export const verifyUserSucceeded = (token, user) => ({
+  type: actions.VERIFY_USER_SUCCEEDED,
+  token,
+  user
+});
+
+export const verifyUserStart = () => ({
+  type: actions.VERIFY_USER_START
+});
+
+export const verifyUserFailed = () => ({
+  type: actions.VERIFY_USER_FAILED
+});
+export const verifyUser = () => async (dispatch) => {
+  const token = localStorage.getItem('token');
+  const user = JSON.parse(window.localStorage.getItem('user'));
+  if (token && user) {
+    dispatch(verifyUserStart());
+    try {
+      const response = await axios.post('https://innocentsquestioner.herokuapp.com/api/v1/auth/verify', {}, {
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-type': 'application/json',
+          Authorization: token,
+        }
+      });
+      if (response.data.status) {
+        return dispatch(verifyUserSucceeded(token, user));
+      }
+    } catch (error) {
+      dispatch(verifyUserFailed());
+    }
+  }
 };

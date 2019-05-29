@@ -23,7 +23,6 @@ const getTrendingMeetupsStart = state => ({
 const getTrendingMeetupsSucceeded = (state, action) => {
   const newState = { ...state };
   newState.trendingMeetups = [
-    ...state.trendingMeetups,
     ...action.trendingMeetups
   ];
   return {

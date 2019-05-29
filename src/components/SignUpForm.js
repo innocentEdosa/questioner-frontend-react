@@ -139,7 +139,7 @@ const SignUpForm = ({
           </button>
           <p className="mt-5 mb-3 text-muted text-center">
             Already have an account?
-            <Link to="/Auth" onClick={() => onNavClick('login')} className="ml-1 form-btn-sub btn btn-outline-success text-success ">
+            <Link to="/Auth" onClick={() => onNavClick('login', '/')} className="ml-1 form-btn-sub btn btn-outline-success text-success ">
              Log in
               {' '}
             </Link>
