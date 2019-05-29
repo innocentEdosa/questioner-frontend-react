@@ -105,7 +105,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onSignUp: (username, email, password) => dispatch(signUp(username, email, password)),
   onLogIn: (email, password) => dispatch(logIn(email, password)),
-  onNavClick: nav => dispatch(authNav(nav))
+  onNavClick: (nav, path) => dispatch(authNav(nav, path))
 });
 
 export default connect(mapStateToProps,

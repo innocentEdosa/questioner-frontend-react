@@ -3,17 +3,23 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Nav from '../components/Nav';
-import { authNav } from '../store/actions/authActions';
+import { authNav, logOutUser } from '../store/actions/authActions';
 import { openMeetupModal } from '../store/actions/adminActions';
 
-const Navigation = ({ isAuthenticated, onNavClick, onCreateMeetup }) => {
-  let link;
+const Navigation = ({
+  isAuthenticated,
+  onNavClick,
+  onCreateMeetup,
+  onLogOut,
+  user
+}) => {
+  let link = [];
   const structureLinks = () => {
     if (!isAuthenticated) {
       link = [
         <Link
           to="/Auth"
-          onClick={() => onNavClick('login')}
+          onClick={() => onNavClick('login', '/')}
           className="nav-item m-2  navigation-btn nav-link "
         >
           Log in
@@ -21,7 +27,7 @@ const Navigation = ({ isAuthenticated, onNavClick, onCreateMeetup }) => {
         </Link>,
         <Link
           to="/Auth"
-          onClick={() => onNavClick('signup')}
+          onClick={() => onNavClick('signup', '/')}
           className="nav-item m-2  navigation-btn nav-link"
         >
           Sign up
@@ -31,21 +37,45 @@ const Navigation = ({ isAuthenticated, onNavClick, onCreateMeetup }) => {
     }
     link = [
       <Link
-        to="/Admin"
-        onClick={() => onCreateMeetup()}
+        to="/"
+        onClick={() => onLogOut()}
         className="nav-item m-2  navigation-btn nav-link"
       >
-        Create Meetup
+        Log out
       </Link>,
-      // i would still remove this guy before pushing o
-      <Link
-        to="/meetups"
-      // onClick={() => onCreateMeetup()}
-        className="nav-item m-2  navigation-btn nav-link"
-      >
-      show meetups
+      <Link to="/Auth" onClick={() => onNavClick('signup', '/')}>
+        <div className="userImage  navigation-profile  m-2">
+          <img
+            style={{ width: '100%', height: '100%' }}
+            src={
+              user.firstname === 'yourfirstname'
+              && user.lastname === 'yourlastname'
+                ? `https://ui-avatars.com/api/?bold=true&background=3157BE&color=fff&name=+${
+                  user.username
+                }`
+                : `https://ui-avatars.com/api/?bold=true&background=3157BE&color=fff&name=+${
+                  user.firstname
+                }+${user.lastname}`
+            }
+            className="rounded mx-auto"
+            alt="some"
+          />
+          {/* sdfjoisfoias */}
+        </div>
       </Link>
     ];
+    if (user.isAdmin === 'TRUE' && isAuthenticated) {
+      link = [
+        <Link
+          to="/Admin"
+          onClick={() => onCreateMeetup()}
+          className="nav-item m-2  navigation-btn nav-link"
+        >
+          Create Meetup
+        </Link>,
+        ...link
+      ];
+    }
   };
 
   structureLinks();
@@ -54,18 +84,22 @@ const Navigation = ({ isAuthenticated, onNavClick, onCreateMeetup }) => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user
 });
 
 const mapDispatchToProps = dispatch => ({
-  onNavClick: nav => dispatch(authNav(nav)),
+  onNavClick: (nav, path) => dispatch(authNav(nav, path)),
+  onLogOut: () => dispatch(logOutUser()),
   onCreateMeetup: () => dispatch(openMeetupModal())
 });
 
 Navigation.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   onNavClick: PropTypes.func.isRequired,
-  onCreateMeetup: PropTypes.func.isRequired
+  onCreateMeetup: PropTypes.func.isRequired,
+  onLogOut: PropTypes.func.isRequired,
+  user: PropTypes.shape({}).isRequired
 };
 
 export default connect(mapStateToProps,

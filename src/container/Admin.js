@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import authFormValidator from '../helper/authFormValidator';
 import CreateMeetupModal from '../components/CreateMeetupModal';
 import { closeMeetupModal, createMeetup, getAdminMeetups } from '../store/actions/adminActions';
-import HeroSection from '../components/HeroSection';
+import AdminHeroSection from '../components/AdminHeroSection';
 import AdminMeetupRecordList from '../components/AdminMeetupRecordList';
 import Loader from '../components/Loader';
 
@@ -24,10 +24,10 @@ const Admin = ({
   }, []);
 
   const [formInput, setFormInput] = useState({
-    title: 'this is a very wonderful meetup',
-    location: 'No 14 olohun osunde street eyean benin',
+    title: '',
+    location: '',
     description:
-      'this is the descritpio of a very long meetup which i am cjurrent creating',
+      '',
     image: '',
     date: '',
     file: '',
@@ -64,11 +64,7 @@ const Admin = ({
 
   return (
     <div>
-      <HeroSection
-        mainText="WELCOME ORGANIZER"
-        subText="create some awesome meetup"
-        callToAction="CREATE MEETUP"
-        height="40vh"
+      <AdminHeroSection
         paddingTop="3rem"
         onclick={() => {
         }}
