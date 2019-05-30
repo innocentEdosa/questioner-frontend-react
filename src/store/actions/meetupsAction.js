@@ -39,19 +39,18 @@ export const getAllMeetups = () => async (dispatch) => {
   } catch (err) {
     const error = err.response.data;
     dispatch(getAllMeetupsFailed(error));
-    toast.failed('Something went wrong! Cant get all meetups now');
+    toast.success('Something went wrong! Cant get all meetups now');
   }
 };
 
 export const getSpecificMeetup = id => async (dispatch) => {
   dispatch(getSpecificMeetupStart());
-  try {
-    const response = await fetchSpecificMeetup(id);
-    if (response) {
+  return fetchSpecificMeetup(id)
+    .then((response) => {
       const meetup = response.data.data[0];
       dispatch(getSpecificMeetupSucceeded(meetup));
-    }
-  } catch (error) {
-    dispatch(getSpecificMeetupFailed());
-  }
+    })
+    .catch((error) => {
+      dispatch(getSpecificMeetupFailed());
+    });
 };

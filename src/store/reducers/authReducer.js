@@ -1,21 +1,5 @@
 import * as actions from '../actions/actionTypes';
 
-// const getState = () => {
-//   const token = localStorage.getItem('token');
-//   const user = JSON.parse(window.localStorage.getItem('user'));
-//   const initialState = (user && token) ? {
-//     authType: 'login',
-//     loading: false,
-//     isAuthenticated: true,
-//     user,
-//     error: null,
-//     token,
-//     authRedirectPath: '/'
-//   } :
-
-//   return initialState;
-// };
-
 const initialState = {
   verifyingUser: false,
   authType: 'login',

@@ -23,6 +23,7 @@ export const authType = (authform, path) => ({
   path
 });
 
+// ANCHOR Remove this later
 export const adminAuth = () => (dispatch) => {
   toast.success('You need to be login in as an admin to access admin routes');
 };
@@ -51,8 +52,10 @@ export const signUp = (username, email, password) => async (dispatch) => {
       toast.success('Your sign up was successful');
     }
   } catch (err) {
-    const { error } = err.response.data;
-    dispatch(authFailed(error));
+    if (err.response) {
+      const { error } = err.response.data;
+      dispatch(authFailed(error));
+    }
   }
 };
 
@@ -75,8 +78,10 @@ export const logIn = (email, password) => async (dispatch) => {
       toast.success('Your log in was successful');
     }
   } catch (err) {
-    const { error } = err.response.data;
-    dispatch(authFailed(error));
+    if (err.response) {
+      const { error } = err.response.data;
+      dispatch(authFailed(error));
+    }
   }
 };
 export const logOut = () => ({
@@ -121,7 +126,7 @@ export const verifyUser = () => async (dispatch) => {
         return dispatch(verifyUserSucceeded(token, user));
       }
     } catch (error) {
-      dispatch(verifyUserFailed());
+      return dispatch(verifyUserFailed());
     }
   }
 };
