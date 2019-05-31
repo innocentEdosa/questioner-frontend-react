@@ -10,6 +10,7 @@ import MeetupJumbotron from '../components/MeetupJumbotron';
 import SubMeetupList from '../components/SubMeetupList';
 import { getRandomMeetups } from '../store/actions/homeActions';
 import QuestionList from '../components/QuestionList';
+import { getMeetupRsvp, createMeetupRsvp } from '../store/actions/rsvpAction';
 import {
   createQuestion,
   getQuestions,
@@ -32,7 +33,12 @@ const Meetup = ({
   gettingQuestions,
   onGetQuestion,
   onUpVote,
-  onDownVote
+  onDownVote,
+  onGetMeetupRsvp,
+  gettingRsvp,
+  user,
+  rsvpResponse,
+  onCreateRsvp
 }) => {
   if (loadingSpecificMeetupFailed) {
     return <Redirect to="/notfound" />;
@@ -76,15 +82,33 @@ const Meetup = ({
     onDownVote(id);
   };
 
+  const rsvpMeetup = (response) => {
+    onCreateRsvp(meetup.id, user.id, response);
+  };
+
+  useEffect(() => {
+    onGetMeetupRsvp(user.id, meetup.id);
+  }, [questions]);
+
   return loadingSpecificMeetup ? (
     <Loader />
   ) : (
     <div>
-      <MeetupJumbotron meetup={meetup} />
+      <MeetupJumbotron
+        rsvpMeetup={rsvpMeetup}
+        rsvpResponse={rsvpResponse}
+        gettingRsvp={gettingRsvp}
+        meetup={meetup}
+      />
       <div className="container">
         <div className="row align-items-start">
           <div className="col-md-7">
-            <SpecificMeetup meetup={meetup} />
+            <SpecificMeetup
+              rsvpMeetup={rsvpMeetup}
+              rsvpResponse={rsvpResponse}
+              gettingRsvp={gettingRsvp}
+              meetup={meetup}
+            />
             <div className="mb-n4 mt-5">
               {questions.length === 0
                 ? 'No questions yet'
@@ -133,7 +157,10 @@ const mapStateToProps = state => ({
   creatingQuestion: state.question.creatingQuestion,
   gettingQuestions: state.question.gettingQuestions,
   questions: state.question.questions,
-  upVoting: state.question.upVoting
+  upVoting: state.question.upVoting,
+  gettingRsvp: state.rsvp.gettingRsvp,
+  rsvpResponse: state.rsvp.rsvpResponse,
+  user: state.auth.user
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -142,7 +169,9 @@ const mapDispatchToProps = dispatch => ({
   onCreateQuestion: (question, meetupId) => dispatch(createQuestion(question, meetupId)),
   onGetQuestion: id => dispatch(getQuestions(id)),
   onUpVote: id => dispatch(upVoteQuestion(id)),
-  onDownVote: id => dispatch(downVoteQuestion(id))
+  onDownVote: id => dispatch(downVoteQuestion(id)),
+  onGetMeetupRsvp: (userId, meetupId) => dispatch(getMeetupRsvp(userId, meetupId)),
+  onCreateRsvp: (meetupId, userId, response) => dispatch(createMeetupRsvp(meetupId, userId, response))
 });
 
 Meetup.propTypes = {
@@ -160,7 +189,12 @@ Meetup.propTypes = {
   gettingQuestions: PropTypes.bool.isRequired,
   onGetQuestion: PropTypes.func.isRequired,
   onUpVote: PropTypes.func.isRequired,
-  onDownVote: PropTypes.func.isRequired
+  onDownVote: PropTypes.func.isRequired,
+  onGetMeetupRsvp: PropTypes.func.isRequired,
+  gettingRsvp: PropTypes.bool.isRequired,
+  user: PropTypes.shape({}).isRequired,
+  rsvpResponse: PropTypes.func.isRequired,
+  onCreateRsvp: PropTypes.func.isRequired
 };
 
 export default withRouter(connect(mapStateToProps,

@@ -26,3 +26,5 @@ export const fetchQuestions = meetupId => getAxiosInstance().get(`/questions/mee
 export const fetchAdminMeetups = adminId => getAxiosInstance().get(`/meetups/${adminId}/meetups`);
 export const upVote = questionId => getAxiosInstance().patch(`/questions/${questionId}/upvote`);
 export const downVote = questionId => getAxiosInstance().patch(`/questions/${questionId}/downvote`);
+export const fetchRsvp = (userId, meetupId) => getAxiosInstance().get(`/rsvp/${userId}/${meetupId}`);
+export const createRsvp = (meetupId, params) => getAxiosInstance().post(`/meetups/${meetupId}/rsvp`, params);
