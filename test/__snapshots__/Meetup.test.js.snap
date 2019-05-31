@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MeetupJumbotron /> Should match the snapshot 1`] = `
+<div
+  className="jumbotron jumbotron-fluid specificMeetup"
+>
+  <div
+    className="container"
+  >
+    <h1
+      className="mt-md-n2 specificMeetupMainText"
+    />
+    <p
+      className="lead specificMeetupSubText pt-1 pb-3"
+    />
+    <div
+      className="specificMeetupRsvp"
+      style={
+        Object {
+          "width": "39%",
+        }
+      }
+    >
+      <div
+        className="specificMeetupRsvp-back"
+      >
+        <div
+          aria-label="Third group"
+          className="btn-group"
+          role="group"
+        >
+          <button
+            className="btn specificMeetupRsvpBtn"
+            type="button"
+          >
+            Yes
+          </button>
+        </div>
+        <div
+          aria-label="Third group"
+          className="btn-group mx-4"
+          role="group"
+        >
+          <button
+            className="btn specificMeetupRsvpBtn"
+            type="button"
+          >
+            Maybe
+          </button>
+        </div>
+        <div
+          aria-label="Third group"
+          className="btn-group"
+          role="group"
+        >
+          <button
+            className="btn specificMeetupRsvpBtn"
+            type="button"
+          >
+            No
+          </button>
+        </div>
+      </div>
+      <div
+        className="specificMeetupRsvp-side specificMeetupRsvp-front"
+      >
+        Add to Schedule
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ScheduleCard /> Should match the snapshot 1`] = `
+<div
+  className="specificMeetupRsvp"
+  style={Object {}}
+>
+  <div
+    className="specificMeetupRsvp-back"
+  >
+    <div
+      aria-label="Third group"
+      className="btn-group"
+      role="group"
+    >
+      <button
+        className="btn specificMeetupRsvpBtn"
+        type="button"
+      >
+        Yes
+      </button>
+    </div>
+    <div
+      aria-label="Third group"
+      className="btn-group mx-4"
+      role="group"
+    >
+      <button
+        className="btn specificMeetupRsvpBtn"
+        type="button"
+      >
+        Maybe
+      </button>
+    </div>
+    <div
+      aria-label="Third group"
+      className="btn-group"
+      role="group"
+    >
+      <button
+        className="btn specificMeetupRsvpBtn"
+        type="button"
+      >
+        No
+      </button>
+    </div>
+  </div>
+  <div
+    className="specificMeetupRsvp-side specificMeetupRsvp-front"
+  >
+    Add to Schedule
+  </div>
+</div>
+`;
