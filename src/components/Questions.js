@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import UpVote from './Upvote';
+import DownVote from './DownVote';
+import CommentBtn from './CommentBtn';
 
-const Questions = ({ question }) => (
+const Questions = ({
+  question, upVote, upVoting, downVote
+}) => (
   <div className="my-5 card">
     <div className="questionUserDetails">
       <div className="questionUserImage m-3">
@@ -31,29 +35,9 @@ const Questions = ({ question }) => (
           role="group"
           aria-label="First group"
         >
-          <button type="button" className="btn mx-1">
-            <span className="mx-1 ">
-              {question.upvotes ? question.upvotes : null}
-            </span>
-            <FontAwesomeIcon icon="thumbs-up" />
-            {' '}
-          </button>
-          <button type="button" className="btn mx-1">
-            <span className="mx-1 ">
-              {question.downvotes ? question.downvotes : null}
-            </span>
-            {' '}
-            <FontAwesomeIcon icon="thumbs-down" />
-            {' '}
-          </button>
-          <button type="button" className="btn mx-1">
-            <span className="mx-1 ">
-              {question.comment ? question.comment : 10}
-            </span>
-            {' '}
-            <FontAwesomeIcon icon="comment-alt" />
-            {' '}
-          </button>
+          <UpVote upVoting={upVoting} upVote={upVote} question={question} />
+          <DownVote downVote={downVote} question={question} />
+          <CommentBtn question={question} />
         </div>
       </span>
     </div>
@@ -61,6 +45,9 @@ const Questions = ({ question }) => (
 );
 
 Questions.propTypes = {
-  question: PropTypes.shape({}).isRequired
+  question: PropTypes.shape({}).isRequired,
+  upVoting: PropTypes.bool.isRequired,
+  upVote: PropTypes.func.isRequired,
+  downVote: PropTypes.func.isRequired
 };
 export default Questions;
