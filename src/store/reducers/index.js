@@ -4,13 +4,15 @@ import adminReducer from './adminReducer';
 import AllMeetupsReducer from './meetupsReducer';
 import homeReducer from './homeReducer';
 import questionReducer from './questionReducer';
+import rsvpReducer from './rsvpReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   admin: adminReducer,
   allMeetups: AllMeetupsReducer,
   home: homeReducer,
-  question: questionReducer
+  rsvp: rsvpReducer,
+  question: questionReducer,
 });
 
 export default rootReducer;
