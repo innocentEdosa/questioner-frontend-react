@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import { postQuestion, fetchQuestions } from '../api/index';
+import { postQuestion, fetchQuestions, upVote, downVote } from '../api/index';
 
 export const creatingQuestionStart = () => ({
   type: actions.CREATE_QUESTION_START
@@ -57,5 +57,39 @@ export const getQuestions = id => async (dispatch) => {
     }
   } catch (error) {
     dispatch(getQuestionsFailed());
+  }
+};
+
+const voteQuestionSucceeded = question => ({
+  type: actions.UPVOTE_QUESTION_SUCCEEDED,
+  question
+});
+
+const voteQuestionFailed = () => ({
+  type: actions.UPVOTE_QUESTION_FAILED
+});
+
+export const upVoteQuestion = id => async (dispatch) => {
+  try {
+    const response = await upVote(id);
+    if (response) {
+      const question = response.data.data;
+      dispatch(voteQuestionSucceeded(question));
+    }
+  } catch (error) {
+    dispatch(voteQuestionFailed());
+  }
+};
+
+export const downVoteQuestion = id => async (dispatch) => {
+  try {
+    const response = await downVote(id);
+    if (response) {
+      const question = response.data.data;
+      console.log(question, 'i am the donwvoted question');
+      dispatch(voteQuestionSucceeded(question));
+    }
+  } catch (error) {
+    dispatch(voteQuestionFailed());
   }
 };

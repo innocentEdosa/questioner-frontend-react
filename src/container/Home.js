@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MainHeroSection from '../components/MainHeroSection';
@@ -59,13 +60,14 @@ const Home = ({
             </p>
             <MeetupList meetups={randomMeetups} />
             <div className="text-center mt-5 ">
-              <a
+              <Link
+                to="/meetups"
                 className="btn w-25 mb-5 showMoreBtn btn-lg"
-                href="/"
+                href="/meetups"
                 role="button"
               >
                 Show more meetups
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -92,13 +94,14 @@ const Home = ({
             </p>
             <MeetupList meetups={trendingMeetups} />
             <div className="text-center mt-5 ">
-              <a
+              <Link
                 className="btn w-25 mb-5 showMoreBtn btn-lg"
-                href="/"
+                href="/meetups"
                 role="button"
+                to="/meetups"
               >
                 Show more meetups
-              </a>
+              </Link>
             </div>
           </div>
         </div>
