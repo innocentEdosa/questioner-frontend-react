@@ -124,6 +124,91 @@ describe('Questions actions', () => {
         expect(actualActions).toEqual(expectedActions);
       });
   });
+
+  it(' vote Questions failed', () => {
+    const expectedAction = {
+      type: types.UPVOTE_QUESTION_FAILED,
+    };
+    expect(actions.voteQuestionFailed()).toEqual(expectedAction);
+  });
+
+
+  it(' vote Questions succeeded', () => {
+    const expectedAction = {
+      type: types.UPVOTE_QUESTION_SUCCEEDED,
+      question: 'some-question'
+    };
+    expect(actions.voteQuestionSucceeded('some-question')).toEqual(expectedAction);
+  });
+
+  it('should upvote a question', () => {
+    mock.onPatch('/questions/3/upvote').reply(200, {
+      data: {
+        data: []
+      }
+    });
+
+    const expectedActions = [
+      'UPVOTE_QUESTION_SUCCEEDED'
+    ];
+
+    const store = mockStore({});
+    store.dispatch(actions.upVoteQuestion(3))
+      .then((response) => {
+        const actualActions = store.getActions().map(action => action.type);
+        expect(actualActions).toEqual(expectedActions);
+      });
+  });
+
+  it('should fail to upvote a question', () => {
+    mock.onPatch('/questions/3/upvote').reply(500);
+
+    const expectedActions = [
+      'UPVOTE_QUESTION_FAILED'
+    ];
+
+    const store = mockStore({});
+    store.dispatch(actions.upVoteQuestion(3))
+      .then((response) => {
+        const actualActions = store.getActions().map(action => action.type);
+        expect(actualActions).toEqual(expectedActions);
+      });
+  });
+
+
+  it('should downvote a question', () => {
+    mock.onPatch('/questions/3/upvote').reply(200, {
+      data: {
+        data: []
+      }
+    });
+
+    const expectedActions = [
+      'UPVOTE_QUESTION_SUCCEEDED'
+    ];
+
+    const store = mockStore({});
+    store.dispatch(actions.downVoteQuestion(3))
+      .then((response) => {
+        const actualActions = store.getActions().map(action => action.type);
+        expect(actualActions).toEqual(expectedActions);
+      });
+  });
+
+  it('should fail to downvote a question', () => {
+    mock.onPatch('/questions/3/upvote').reply(500);
+
+    const expectedActions = [
+      'UPVOTE_QUESTION_FAILED'
+    ];
+
+    const store = mockStore({});
+    store.dispatch(actions.downVoteQuestion(3))
+      .then((response) => {
+        const actualActions = store.getActions().map(action => action.type);
+        expect(actualActions).toEqual(expectedActions);
+      });
+  });
 });
 
 // ANCHOR  reducer test sample
@@ -191,6 +276,20 @@ describe('questions reducer', () => {
       ...initialState,
       gettingQuestions: false,
       questions: []
+    });
+  });
+
+  it('vote questions succeeded', () => {
+    expect(questionReducer(initialState, actions.voteQuestionSucceeded())).toEqual({
+      ...initialState,
+      gettingQuestions: false,
+      questions: []
+    });
+  });
+
+  it('vote questions failed', () => {
+    expect(questionReducer(initialState, actions.voteQuestionFailed())).toEqual({
+      ...initialState
     });
   });
 });

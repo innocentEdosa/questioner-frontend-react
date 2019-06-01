@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { dateFormatter2 } from '../helper/formatMeetup';
 
 const ProfileUserCard = ({ user }) => (
   <div
-    className="col-sm-5 text-center"
+    className="sticky-top"
   >
     <div className="profileUserImage mt-5 mx-auto">
       <img
@@ -27,5 +28,9 @@ const ProfileUserCard = ({ user }) => (
     <p className="h6 mt-2 text-muted profileSub">{(user.registered) ? `Joined questioner on  ' ${dateFormatter2(user.registered)} '` : user.registered}</p>
   </div>
 );
+
+ProfileUserCard.propTypes = {
+  user: PropTypes.shape({}).isRequired
+};
 
 export default ProfileUserCard;

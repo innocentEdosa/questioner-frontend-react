@@ -9,8 +9,14 @@ const Profile = ({ user, gettingUserRsvp, userRsvp }) => (
   <span>
     <div className="container profile">
       <div className="row my-5">
-        <ProfileUserCard user={user} />
-        <div className="col-sm-7 mt-5">
+        <div
+          className="sticky-top col-lg-5 text-center"
+        >
+          <div>
+            <ProfileUserCard user={user} />
+          </div>
+        </div>
+        <div className="col-lg-7 mt-5">
           <h1 className="heading-primary">YOUR RSVP</h1>
           <div className="my-4" />
           {(gettingUserRsvp) ? <Loader /> : <ProfileRsvpCardList userRsvp={userRsvp} />}

@@ -7,7 +7,7 @@ const MeetupCard = ({ meetup }) => (
   <Link to={`/meetup/${meetup.id}`}>
     <div className="card cardWrapper mt-5">
       <div className="row no-gutters">
-        <div className="col-md-3">
+        <div className="col-lg-3">
           <img
             style={{
               minWidth: '270px',
@@ -24,7 +24,7 @@ const MeetupCard = ({ meetup }) => (
             alt=""
           />
         </div>
-        <div className="col-md-7">
+        <div className="col-lg-7">
           <div className="card-body">
             <h5 className="card-title, cardTitle">
               {truncate(meetup.topic, 41)}
@@ -38,14 +38,14 @@ const MeetupCard = ({ meetup }) => (
           </div>
         </div>
 
-        <div className="col-md-2 py-1 px-3">
-          <div className="card text-center mt-3 cardQuestions d-none d-md-block">
+        <div className="col-lg-2 py-1 px-3">
+          <div className="card text-center mt-3 cardQuestions d-none d-lg-block">
             <div style={{ width: '100%' }} className="p-1">
               <p className="card-text font-weight-bold ">10</p>
               <p className="card-text mt-n2">Questions already</p>
             </div>
           </div>
-          <p className="mt-3 text-center d-none d-md-block">
+          <p className="mt-3 text-center d-none d-lg-block">
             <small className="text-muted">
               date:
               {' '}

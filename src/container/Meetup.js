@@ -102,7 +102,7 @@ const Meetup = ({
       />
       <div className="container">
         <div className="row align-items-start">
-          <div className="col-md-7">
+          <div className="col-lg-7">
             <SpecificMeetup
               rsvpMeetup={rsvpMeetup}
               rsvpResponse={rsvpResponse}
@@ -132,7 +132,7 @@ const Meetup = ({
               <Loader />
             )}
           </div>
-          <div className="sticky-top col-md-4 offset-0 offset-md-1 mt-5 mt-md-0">
+          <div className="sticky-top col-lg-4 offset-0 offset-md-1 mt-5 mt-md-0">
             <p className="text-uppercase font-weight-bolder heading-primary">
               More meetups
             </p>

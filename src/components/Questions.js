@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import UpVote from './Upvote';
 import DownVote from './DownVote';
 import CommentBtn from './CommentBtn';
+import { dateFormatter2 } from '../helper/formatMeetup';
 
 const Questions = ({
   question, upVote, upVoting, downVote
@@ -21,7 +22,7 @@ const Questions = ({
         {question.username ? question.username : 'you'}
       </span>
       <p className="text-muted">
-        {question.createdAt ? question.createdAt : null}
+        {question.createdOn ? dateFormatter2(question.createdOn) : null}
         {' '}
       </p>
     </div>

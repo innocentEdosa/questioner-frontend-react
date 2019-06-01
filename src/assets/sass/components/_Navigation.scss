@@ -41,3 +41,26 @@ color: rgb(255, 255, 255);
   transition: all .4s;
   border-radius: 0rem;
 }
+
+@media only screen and (max-width: 991px) {
+  .navigation {
+    &-btn {
+      padding: 1rem 1rem;
+      border-radius: 0rem;
+      width: 50%;
+      display: block
+    }
+
+    .form-control {
+      border-radius: 0.15rem;
+      display: none;
+      padding: 1rem 1rem;
+    }
+
+    }
+
+.userImage.Navigation-profile{
+  width: 80px;
+  height: 80px;
+}
+}

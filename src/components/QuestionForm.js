@@ -61,7 +61,7 @@ const questionForm = ({
             type="submit"
             className="btn py-2 questionBtn ml-2 my-3"
           >
-            {creatingQuestion ? 'loading' : 'Post question'}
+            {creatingQuestion ? 'Posting question...' : 'Post question'}
           </button>
         </div>
       </form>

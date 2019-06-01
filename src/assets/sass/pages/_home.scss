@@ -16,3 +16,16 @@
     color: #fff;
   }
 }
+
+@media only screen and (max-width: 770px) {
+  .showMoreBtn {
+    font-size: 0.8rem;
+    color:  #05c46b;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+.container {
+  width: 100%;
+}
+}
