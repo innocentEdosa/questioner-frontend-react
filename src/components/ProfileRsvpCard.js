@@ -2,25 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { truncate, dateFormatter2 } from '../helper/formatMeetup';
 
-const AdminMeetupRecord = ({ meetup }) => (
+
+const ProfileRsvpCard = ({ meetup }) => (
   <div>
     <div className="card adminCard mb-4">
       <div className="row  no-gutters">
-        <div className="col-md-2">
-          <div className="adminImageWrapper">
+        <div className="col-md-3">
+          <div style={{ height: '100%', width: '100%', borderRadius: '0px' }}>
             <img
-              style={{ height: '100%', padding: '1.5rem' }}
+              style={{ height: '100%', padding: '1rem' }}
               src={
                 meetup.images
                   ? meetup.images
-                  : 'https://res.cloudinary.com/dqw7jnfgo/image/upload/v1559054141/BACK.png'
+                  : 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
               }
               className="w-100 card-img"
               alt="..."
             />
           </div>
         </div>
-        <div className="col-md-8">
+        <div className="col-md-9">
           <div className="card-body">
             <h5 className="card-title">{meetup.topic ? meetup.topic : null}</h5>
             <p className="card-text">
@@ -35,23 +36,13 @@ const AdminMeetupRecord = ({ meetup }) => (
             </p>
           </div>
         </div>
-        <div className="col-md-2 mb-2">
-          <div className="adminBtn">
-            <button type="button" className="btn adminEditBtn   btn-block ">
-              edit
-            </button>
-            <button type="button" className="btn adminDeleteBtn  btn-block">
-              delete
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 );
 
-AdminMeetupRecord.propTypes = {
+ProfileRsvpCard.propTypes = {
   meetup: PropTypes.shape({}).isRequired
 };
 
-export default AdminMeetupRecord;
+export default ProfileRsvpCard;

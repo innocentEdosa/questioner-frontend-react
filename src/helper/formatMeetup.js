@@ -7,4 +7,8 @@ export const dateFormatter = (date) => {
   return `${formattedDate}`;
 };
 
+export const dateFormatter2 = (date) => {
+  const dateFormat = new Date(date);
+  return dateFormat.toDateString();
+};
 export const truncate = (text, max) => text.substr(0, max - 1) + (text.length > max ? '...' : '');

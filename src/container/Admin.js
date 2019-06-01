@@ -3,10 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import authFormValidator from '../helper/authFormValidator';
 import CreateMeetupModal from '../components/CreateMeetupModal';
-import { closeMeetupModal, createMeetup, getAdminMeetups } from '../store/actions/adminActions';
+import {
+  closeMeetupModal,
+  createMeetup,
+  getAdminMeetups,
+  openMeetupModal
+} from '../store/actions/adminActions';
 import AdminHeroSection from '../components/AdminHeroSection';
 import AdminMeetupRecordList from '../components/AdminMeetupRecordList';
 import Loader from '../components/Loader';
+import Footer from '../components/Footer';
 
 const Admin = ({
   openModal,
@@ -17,7 +23,8 @@ const Admin = ({
   gettingMeetups,
   onGetAdminMeetups,
   user,
-  meetups
+  meetups,
+  onCreateMeetup
 }) => {
   useEffect(() => {
     onGetAdminMeetups(user.id);
@@ -26,8 +33,7 @@ const Admin = ({
   const [formInput, setFormInput] = useState({
     title: '',
     location: '',
-    description:
-      '',
+    description: '',
     image: '',
     date: '',
     file: '',
@@ -66,14 +72,17 @@ const Admin = ({
     <div>
       <AdminHeroSection
         paddingTop="3rem"
-        onclick={() => {
-        }}
+        onclick={onCreateMeetup}
         lead="/Auth"
       />
       <div className="container">
         <div className="heading-primary">Records</div>
       </div>
-      {gettingMeetups ? <Loader /> : <AdminMeetupRecordList adminMeetups={meetups} />}
+      {gettingMeetups ? (
+        <Loader />
+      ) : (
+        <AdminMeetupRecordList adminMeetups={meetups} />
+      )}
       <CreateMeetupModal
         serverError={serverError}
         creatingMeetup={creatingMeetup}
@@ -84,6 +93,7 @@ const Admin = ({
         openModal={openModal}
         onBlur={onBlurHandler}
       />
+      <Footer />
     </div>
   );
 };
@@ -100,7 +110,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   closeModal: () => dispatch(closeMeetupModal()),
   createMeetups: formInput => dispatch(createMeetup(formInput)),
-  onGetAdminMeetups: adminId => dispatch(getAdminMeetups(adminId))
+  onGetAdminMeetups: adminId => dispatch(getAdminMeetups(adminId)),
+  onCreateMeetup: () => dispatch(openMeetupModal())
 });
 
 Admin.propTypes = {
@@ -112,7 +123,8 @@ Admin.propTypes = {
   gettingMeetups: PropTypes.bool.isRequired,
   onGetAdminMeetups: PropTypes.func.isRequired,
   user: PropTypes.shape({}).isRequired,
-  meetups: PropTypes.shape([]).isRequired
+  meetups: PropTypes.shape([]).isRequired,
+  onCreateMeetup: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps,

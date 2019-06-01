@@ -43,7 +43,7 @@ const Navigation = ({
       >
         Log out
       </Link>,
-      <Link to="/Auth" onClick={() => onNavClick('signup', '/')}>
+      <Link to="/profile">
         <div className="userImage  navigation-profile  m-2">
           <img
             style={{ width: '100%', height: '100%' }}
@@ -60,12 +60,17 @@ const Navigation = ({
             className="rounded mx-auto"
             alt="some"
           />
-          {/* sdfjoisfoias */}
         </div>
       </Link>
     ];
     if (user.isAdmin === 'TRUE' && isAuthenticated) {
       link = [
+        <Link
+          to="/Admin"
+          className="nav-item m-2  navigation-btn nav-link"
+        >
+        Admin
+        </Link>,
         <Link
           to="/Admin"
           onClick={() => onCreateMeetup()}

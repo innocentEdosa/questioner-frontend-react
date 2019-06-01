@@ -13,8 +13,7 @@ const AdminHeroSection = ({
       </p>
       <hr className="my-3" />
       <Link
-        to={lead}
-        onClick={onclick}
+        onClick={() => onclick()}
         className="btn w-50 heroSectionBtn btn-lg"
         href="/"
         role="button"
