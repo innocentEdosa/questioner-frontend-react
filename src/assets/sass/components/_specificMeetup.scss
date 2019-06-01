@@ -102,3 +102,9 @@
   font-family: $meetup-font;
   font-size: 1rem;
 }
+
+@media only screen and (max-width: 990px) {
+  .specificMeetupRsvp {
+    width: 100% !important;
+  }
+}

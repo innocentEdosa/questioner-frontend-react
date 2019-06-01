@@ -75,3 +75,54 @@ padding-top: 11rem;
 .heroSection-sub {
   height: 50vh;
 }
+
+@media only screen and (max-width: 991px) {
+  .heroSection {
+      &Main-Text {
+       font-size: 3rem;
+      }
+
+      &Sub-Text {
+        font-size: 1rem;
+      }
+
+  }
+  .heroSection-main {
+    height: 100%;
+    padding-top: 5rem;
+
+  }
+
+  .heroSection-sub {
+    height: 100%
+  }
+}
+
+@media only screen and (max-width: 774px) {
+  .heroSection {
+      &Main-Text {
+       font-size: 2.5rem;
+      }
+
+      &Sub-Text {
+        font-size: 0.8rem;
+      }
+
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .heroSection {
+      &Main-Text {
+       font-size: 2rem;
+      }
+
+      &Sub-Text {
+        font-size: 0.7rem;
+      }
+      &Btn {
+        font-size: 1rem;
+        padding: 1rem 0rem;
+      }
+  }
+}
