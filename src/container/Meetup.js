@@ -171,7 +171,8 @@ const mapDispatchToProps = dispatch => ({
   onUpVote: id => dispatch(upVoteQuestion(id)),
   onDownVote: id => dispatch(downVoteQuestion(id)),
   onGetMeetupRsvp: (userId, meetupId) => dispatch(getMeetupRsvp(userId, meetupId)),
-  onCreateRsvp: (meetupId, userId, response) => dispatch(createMeetupRsvp(meetupId, userId, response))
+  onCreateRsvp:
+  (meetupId, userId, response) => dispatch(createMeetupRsvp(meetupId, userId, response))
 });
 
 Meetup.propTypes = {

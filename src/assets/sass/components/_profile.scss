@@ -1,0 +1,19 @@
+.profile {
+&UserImage {
+  overflow: hidden;
+  max-width: 15rem;
+  height: 15rem;
+  border-radius: 100rem;
+}
+
+&Name {
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: rgb(32, 32, 56);
+  letter-spacing: .05rem;
+}
+
+&Sub{
+  font-size: 1.2rem;
+}
+}

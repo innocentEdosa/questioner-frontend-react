@@ -5,6 +5,7 @@ import AllMeetupsReducer from './meetupsReducer';
 import homeReducer from './homeReducer';
 import questionReducer from './questionReducer';
 import rsvpReducer from './rsvpReducer';
+import profileReducer from './profileReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   home: homeReducer,
   rsvp: rsvpReducer,
   question: questionReducer,
+  profile: profileReducer,
 });
 
 export default rootReducer;

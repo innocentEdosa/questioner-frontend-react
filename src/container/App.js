@@ -22,6 +22,7 @@ import ProtectedRoutes from '../components/ProtectedRoutes';
 import ProtectedAdminRoutes from '../components/ProtectedAdminRoutes';
 import Loader from '../components/Loader';
 import { verifyUser } from '../store/actions/authActions';
+import Profile from './Profile';
 
 library.add(fab, faCommentAlt, faStroopwafel, faThumbsUp, faThumbsDown);
 
@@ -42,6 +43,7 @@ const App = ({ onVerifyUser, verifyingUser }) => {
               <Route path="/login" component={LoginRedirect} />
               <Route path="/adminLogin" component={AuthLoginRedirect} />
               <Route path="/Auth" component={Auth} />
+              <Route path="/profile" component={Profile} />
               <ProtectedAdminRoutes path="/admin" component={Admin} />
               <ProtectedRoutes path="/meetups" component={AllMeetup} />
               <ProtectedRoutes path="/meetup/:id" component={Meetup} />
