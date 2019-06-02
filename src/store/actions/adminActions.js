@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as actions from './actionTypes';
-import { postMeetup, fetchAdminMeetups } from '../api/index';
+import { postMeetup, fetchAdminMeetups, deleteMeetup } from '../api/index';
 
 export const openModal = () => ({
   type: actions.OPEN_MEETUP_MODAL,
@@ -83,5 +83,43 @@ export const getAdminMeetups = adminId => async (dispatch) => {
   } catch (err) {
     const error = err.response.data;
     dispatch(getAdminMeetupsFailed(error));
+  }
+};
+
+// delete meetup
+
+export const openDeleteModal = meetup => ({
+  type: actions.OPEN_DELETE_MODAL,
+  meetup
+});
+
+export const cancelDeleteMeetup = () => ({
+  type: actions.CANCEL_MEETUP_DELETE
+});
+
+export const deleteMeetupStart = () => ({
+  type: actions.DELETE_MEETUP_START
+});
+
+export const deleteMeetupSuccessful = meetup => ({
+  type: actions.DELETE_MEETUP_SUCCESSFUL,
+  meetup
+});
+
+export const deleteMeetupFailed = () => ({
+  type: actions.DELETE_MEETUP_FAILED
+});
+
+export const deleteSpecificMeetup = meetup => async (dispatch) => {
+  dispatch(deleteMeetupStart());
+  try {
+    const response = await deleteMeetup(meetup);
+    if (response) {
+      dispatch(deleteMeetupSuccessful(meetup));
+      toast.success('Your meetup was deleted successfully');
+    }
+  } catch (error) {
+    dispatch(deleteMeetupFailed());
+    toast.error('Your meetup could not be deleted. !!!try again later');
   }
 };

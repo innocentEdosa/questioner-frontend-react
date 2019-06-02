@@ -20,7 +20,7 @@ const CreateMeetupModal = ({
     <div>
       <div
         className={
-          openModal ? 'modal show-it modal-bg  fade' : 'modal modal-bg fade '
+          openModal ? 'modal show-it modal-bg fade' : 'modal modal-bg fade '
         }
         id="ModalCenter"
         tabIndex="-1"

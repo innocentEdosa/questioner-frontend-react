@@ -31,3 +31,4 @@ export const createRsvp = (meetupId, params) => getAxiosInstance().post(`/meetup
 export const fetchUserRsvp = userId => getAxiosInstance().get(`/rsvp/${userId}`);
 export const fetchComment = questionId => getAxiosInstance().get(`/comments/questions/${questionId}`);
 export const postComment = params => getAxiosInstance().post('/comments', params);
+export const deleteMeetup = meetupId => getAxiosInstance().delete(`/meetups/${meetupId}`);
