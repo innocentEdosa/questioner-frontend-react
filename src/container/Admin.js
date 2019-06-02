@@ -7,12 +7,16 @@ import {
   closeMeetupModal,
   createMeetup,
   getAdminMeetups,
-  openMeetupModal
+  openMeetupModal,
+  openDeleteModal,
+  cancelDeleteMeetup,
+  deleteSpecificMeetup
 } from '../store/actions/adminActions';
 import AdminHeroSection from '../components/AdminHeroSection';
 import AdminMeetupRecordList from '../components/AdminMeetupRecordList';
 import Loader from '../components/Loader';
 import Footer from '../components/Footer';
+import DeleteMeetupModal from '../components/DeleteMeetupModal';
 
 const Admin = ({
   openModal,
@@ -24,7 +28,13 @@ const Admin = ({
   onGetAdminMeetups,
   user,
   meetups,
-  onCreateMeetup
+  onCreateMeetup,
+  meetupToDelete,
+  deleteModal,
+  onDeleteMeetup,
+  onCancelDelete,
+  deleteMeetup,
+  deletingMeetup
 }) => {
   useEffect(() => {
     onGetAdminMeetups(user.id);
@@ -81,7 +91,7 @@ const Admin = ({
       {gettingMeetups ? (
         <Loader />
       ) : (
-        <AdminMeetupRecordList adminMeetups={meetups} />
+        <AdminMeetupRecordList deleteMeetup={onDeleteMeetup} adminMeetups={meetups} />
       )}
       <CreateMeetupModal
         serverError={serverError}
@@ -92,6 +102,13 @@ const Admin = ({
         closeModal={closeModal}
         openModal={openModal}
         onBlur={onBlurHandler}
+      />
+      <DeleteMeetupModal
+        deletingMeetup={deletingMeetup}
+        deleteMeetup={deleteMeetup}
+        cancelDelete={onCancelDelete}
+        meetup={meetupToDelete}
+        openDeleteModal={deleteModal}
       />
       <Footer />
     </div>
@@ -104,14 +121,20 @@ const mapStateToProps = state => ({
   serverError: state.admin.error,
   gettingMeetups: state.admin.gettingMeetups,
   user: state.auth.user,
-  meetups: state.admin.meetups
+  meetups: state.admin.meetups,
+  deleteModal: state.admin.deleteModal,
+  meetupToDelete: state.admin.meetupToDelete,
+  deletingMeetup: state.admin.deletingMeetup
 });
 
 const mapDispatchToProps = dispatch => ({
   closeModal: () => dispatch(closeMeetupModal()),
   createMeetups: formInput => dispatch(createMeetup(formInput)),
   onGetAdminMeetups: adminId => dispatch(getAdminMeetups(adminId)),
-  onCreateMeetup: () => dispatch(openMeetupModal())
+  onCreateMeetup: () => dispatch(openMeetupModal()),
+  onDeleteMeetup: meetup => dispatch(openDeleteModal(meetup)),
+  onCancelDelete: () => dispatch(cancelDeleteMeetup()),
+  deleteMeetup: meetup => dispatch(deleteSpecificMeetup(meetup))
 });
 
 Admin.propTypes = {
@@ -124,7 +147,13 @@ Admin.propTypes = {
   onGetAdminMeetups: PropTypes.func.isRequired,
   user: PropTypes.shape({}).isRequired,
   meetups: PropTypes.shape([]).isRequired,
-  onCreateMeetup: PropTypes.func.isRequired
+  onCreateMeetup: PropTypes.func.isRequired,
+  meetupToDelete: PropTypes.shape({}).isRequired,
+  deleteModal: PropTypes.bool.isRequired,
+  onDeleteMeetup: PropTypes.func.isRequired,
+  onCancelDelete: PropTypes.func.isRequired,
+  deleteMeetup: PropTypes.func.isRequired,
+  deletingMeetup: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps,

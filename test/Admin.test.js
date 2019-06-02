@@ -167,6 +167,80 @@ describe('admin actions', () => {
         expect(actualActions).toEqual(expectedActions);
       });
   });
+
+  it('should open delete modal - action', () => {
+    const expectedAction = {
+      type: types.OPEN_DELETE_MODAL,
+      meetup: 3
+    };
+    expect(actions.openDeleteModal(3)).toEqual(expectedAction);
+  });
+
+  it('should cancel delete - action', () => {
+    const expectedAction = {
+      type: types.CANCEL_MEETUP_DELETE
+    };
+    expect(actions.cancelDeleteMeetup()).toEqual(expectedAction);
+  });
+
+  it('should start deleting meetup - action', () => {
+    const expectedAction = {
+      type: types.DELETE_MEETUP_START
+    };
+    expect(actions.deleteMeetupStart()).toEqual(expectedAction);
+  });
+
+  it('delete meetup successful - action', () => {
+    const expectedAction = {
+      type: types.DELETE_MEETUP_SUCCESSFUL,
+      meetup: 'some-meetup'
+    };
+    expect(actions.deleteMeetupSuccessful('some-meetup')).toEqual(expectedAction);
+  });
+
+
+  it('delete meetup failed - action', () => {
+    const expectedAction = {
+      type: types.DELETE_MEETUP_FAILED,
+    };
+    expect(actions.deleteMeetupFailed()).toEqual(expectedAction);
+  });
+
+  it('should delete specific meetup', () => {
+    mock.onDelete('/meetups/3').reply(200, {
+      data: {
+        data: []
+      }
+    });
+
+    const expectedActions = [
+      'DELETE_MEETUP_START',
+      'DELETE_MEETUP_SUCCESSFUL',
+    ];
+
+    const store = mockStore({});
+    store.dispatch(actions.deleteSpecificMeetup(3))
+      .then((response) => {
+        const actualActions = store.getActions().map(action => action.type);
+        expect(actualActions).toEqual(expectedActions);
+      });
+  });
+
+  it('should fail to delete specific meetup', () => {
+    mock.onDelete('/meetups/3').reply(500);
+
+    const expectedActions = [
+      'DELETE_MEETUP_START',
+      'DELETE_MEETUP_FAILED',
+    ];
+
+    const store = mockStore({});
+    store.dispatch(actions.deleteSpecificMeetup(3))
+      .then((response) => {
+        const actualActions = store.getActions().map(action => action.type);
+        expect(actualActions).toEqual(expectedActions);
+      });
+  });
 });
 
 describe('admin reducer', () => {
@@ -239,11 +313,52 @@ describe('admin reducer', () => {
     });
   });
 
-  it('get admin meetup succeeded', () => {
+  it('get admin meetup failed', () => {
     expect(adminReducer(initialState, actions.getAdminMeetupsFailed({}))).toEqual({
       ...initialState,
       gettingMeetups: false,
       error: {},
+    });
+  });
+
+  it('open delete modal', () => {
+    expect(adminReducer(initialState, actions.openDeleteModal({}))).toEqual({
+      ...initialState,
+      deleteModal: true,
+      meetupToDelete: {}
+    });
+  });
+
+  it('cancel delete meetup', () => {
+    expect(adminReducer(initialState, actions.cancelDeleteMeetup())).toEqual({
+      ...initialState,
+      deleteModal: false,
+      meetupToDelete: {}
+    });
+  });
+
+  it('delete meetup start', () => {
+    expect(adminReducer(initialState, actions.deleteMeetupStart())).toEqual({
+      ...initialState,
+      deletingMeetup: true
+    });
+  });
+
+  it('delete meetup successful', () => {
+    expect(adminReducer(initialState, actions.deleteMeetupSuccessful(3))).toEqual({
+      ...initialState,
+      deletingMeetup: false,
+      deleteModal: false,
+      meetupToDelete: {}
+    });
+  });
+
+  it('delete meetup failed', () => {
+    expect(adminReducer(initialState, actions.deleteMeetupFailed())).toEqual({
+      ...initialState,
+      deletingMeetup: false,
+      deleteModal: false,
+      meetupToDelete: {}
     });
   });
 });

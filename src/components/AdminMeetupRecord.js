@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { truncate, dateFormatter2 } from '../helper/formatMeetup';
 
-const AdminMeetupRecord = ({ meetup }) => (
+const AdminMeetupRecord = ({ meetup, deleteMeetup, }) => (
   <div>
     <div className="card adminCard mb-4">
       <div className="row  no-gutters">
@@ -40,7 +40,7 @@ const AdminMeetupRecord = ({ meetup }) => (
             <button type="button" className="btn adminEditBtn   btn-block ">
               edit
             </button>
-            <button type="button" className="btn adminDeleteBtn  btn-block">
+            <button onClick={() => deleteMeetup(meetup)} type="button" className="btn adminDeleteBtn  btn-block">
               delete
             </button>
           </div>
@@ -51,7 +51,8 @@ const AdminMeetupRecord = ({ meetup }) => (
 );
 
 AdminMeetupRecord.propTypes = {
-  meetup: PropTypes.shape({}).isRequired
+  meetup: PropTypes.shape({}).isRequired,
+  deleteMeetup: PropTypes.func.isRequired
 };
 
 export default AdminMeetupRecord;
