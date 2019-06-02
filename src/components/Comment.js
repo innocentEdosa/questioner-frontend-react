@@ -10,7 +10,8 @@ const Comment = ({ comment }) => (
           <img
             style={{ width: '100%', height: '100%' }}
             src={(comment.username) ? `https://ui-avatars.com/api/?bold=true&background=3157BE&color=fff&name=+${
-              comment.username}` : null}
+              comment.username}` : 'https://api.adorable.io/avatars/285/inn@adorable.io.png'
+            }
             className="rounded mx-auto"
             alt="some"
           />

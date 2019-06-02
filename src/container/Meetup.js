@@ -10,6 +10,7 @@ import MeetupJumbotron from '../components/MeetupJumbotron';
 import SubMeetupList from '../components/SubMeetupList';
 import { getRandomMeetups } from '../store/actions/homeActions';
 import QuestionList from '../components/QuestionList';
+import Footer from '../components/Footer';
 import { getMeetupRsvp, createMeetupRsvp } from '../store/actions/rsvpAction';
 import {
   createQuestion,
@@ -144,6 +145,7 @@ const Meetup = ({
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
