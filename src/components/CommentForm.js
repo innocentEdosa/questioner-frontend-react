@@ -4,7 +4,8 @@ import questionFormValidator from '../helper/authFormValidator';
 
 const commentForm = ({
   openComment,
-  creatingComment
+  creatingComment,
+  createComment
 }) => {
   const [formInput, setFormInput] = useState({
     comment: '',
@@ -17,7 +18,6 @@ const commentForm = ({
     setFormInput(newFormInput);
   };
 
-  const createComment = 'comment';
   const submitHandler = (event) => {
     event.preventDefault();
     const check = questionFormValidator('comment', formInput);
@@ -27,7 +27,7 @@ const commentForm = ({
     };
     setFormInput(newFormInput);
     if (Object.keys(formInput.formError).length === 0) {
-      return createComment(formInput.question);
+      return createComment(formInput.comment);
     }
   };
 
@@ -44,11 +44,11 @@ const commentForm = ({
             value={formInput.comment}
             onChange={onChangeHandler}
           />
-          {formInput.formError.question ? (
+          {formInput.formError.comment ? (
             <p
               className="mt-n2 text-danger font-weight-lighter"
             >
-              {formInput.formError.question}
+              {formInput.formError.comment}
             </p>
           ) : null}
           <button
@@ -65,7 +65,8 @@ const commentForm = ({
 
 commentForm.propTypes = {
   openComment: PropTypes.func.isRequired,
-  creatingComment: PropTypes.bool.isRequired
+  creatingComment: PropTypes.bool.isRequired,
+  createComment: PropTypes.func.isRequired
 };
 
 export default commentForm;

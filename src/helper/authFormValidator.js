@@ -96,6 +96,14 @@ const authFormValidator = (fieldName, formInputs) => {
         return error;
       }
       break;
+    case 'comment':
+      if (fieldValue.length < 3) {
+        error[
+          fieldName
+        ] = `Your ${fieldName} is too short. ${fieldName} should be more than 3 characters.`;
+        return error;
+      }
+      break;
     default:
       return error;
   }

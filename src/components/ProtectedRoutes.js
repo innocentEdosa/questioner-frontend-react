@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authNav } from '../store/actions/authActions';
@@ -29,4 +30,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   authenticate: (nav, path) => dispatch(authNav(nav, path)),
 });
+
+ProtectedRoutes.propTypes = {
+  component: PropTypes.element.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  authenticate: PropTypes.func.isRequired,
+  location: PropTypes.shape({}).isRequired
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(ProtectedRoutes);

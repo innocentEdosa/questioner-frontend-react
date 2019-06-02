@@ -5,7 +5,7 @@ import DownVote from './DownVote';
 import CommentBtn from './CommentBtn';
 import CommentForm from './CommentForm';
 import { dateFormatter2 } from '../helper/formatMeetup';
-import { fetchComment } from '../store/api/index';
+import { fetchComment, postComment } from '../store/api/index';
 import CommentList from './CommentList';
 
 const Questions = ({
@@ -14,6 +14,7 @@ const Questions = ({
   const initialState = {
     openComments: true,
     gettingComments: false,
+    creatingComment: false,
     comments: []
   };
 
@@ -27,16 +28,26 @@ const Questions = ({
         return { ...state, gettingComments: false, comments: action.comments };
       case 'gettingCommentFailed':
         return { ...state, gettingComments: false };
+      case 'postCommentStart':
+        return { ...state, creatingComment: true };
+      case 'postCommentSuccessful':
+        return {
+          ...state,
+          creatingComment: false,
+          comments: [action.newComment, ...state.comments]
+        };
+      case 'postCommentFailed':
+        return { ...state, creatingComment: false };
       default:
         return state;
     }
   };
 
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchQuestionComment = async (id) => {
     try {
+      dispatch({ type: 'postCommentStart' });
       const response = await fetchComment(id);
       if (response) {
         const comments = response.data.data;
@@ -44,6 +55,21 @@ const Questions = ({
       }
     } catch (error) {
       dispatch({ type: 'gettingCommentFailed' });
+    }
+  };
+
+  const createComment = async (comment) => {
+    try {
+      const response = await postComment({
+        question: question.id,
+        comment
+      });
+      if (response) {
+        const newComment = response.data.data[0];
+        dispatch({ type: 'postCommentSuccessful', newComment });
+      }
+    } catch (error) {
+      dispatch({ type: 'postCommentFailed' });
     }
   };
 
@@ -63,7 +89,8 @@ const Questions = ({
           <div className="questionUserImage m-3">
             <img
               style={{ width: '100%', height: '100%' }}
-              src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={(question.username) ? `https://ui-avatars.com/api/?bold=true&background=3157BE&color=fff&name=+${
+                question.username}` : 'https://api.adorable.io/avatars/285/inn@adorable.io.png'}
               className="rounded mx-auto"
               alt="some"
             />
@@ -88,18 +115,26 @@ const Questions = ({
             >
               <UpVote upVoting={upVoting} upVote={upVote} question={question} />
               <DownVote downVote={downVote} question={question} />
-              <CommentBtn
-                onclick={openCommentHandler}
-                question={question}
-              />
+              <CommentBtn onclick={openCommentHandler} question={question} />
             </div>
           </span>
         </div>
       </div>
-      <CommentForm gettingComments={state.gettingComments} openComment={state.openComments} />
+      <CommentForm
+        createComment={createComment}
+        gettingComments={state.gettingComments}
+        openComment={state.openComments}
+        creatingComment={state.creatingComment}
+      />
       <div hidden={state.openComments}>
-        {(state.gettingComments) ? <div className="spinner-border mt-3 ml-5 text-dark" role="status" /> : null }
-        {(state.gettingComments) ? null : (state.comments.length === 0) ? <p className="text-muted mt-3 ml-5"> Be the first to comment </p> : <CommentList comments={state.comments} /> }
+        {state.gettingComments ? (
+          <div className="spinner-border mt-3 ml-5 text-dark" role="status" />
+        ) : null}
+        {state.gettingComments ? null : state.comments.length === 0 ? (
+          <p className="text-muted mt-3 ml-5"> Be the first to comment </p>
+        ) : (
+          <CommentList comments={state.comments} />
+        )}
         {' '}
       </div>
     </div>
