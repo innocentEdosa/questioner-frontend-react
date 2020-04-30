@@ -35,7 +35,7 @@
     "enzyme-to-json": "^3.3.5",
     "express": "^4.16.4",
     "formik": "^1.5.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsonwebtoken": "^8.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
